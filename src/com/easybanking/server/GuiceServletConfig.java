@@ -7,6 +7,7 @@ import com.google.appengine.api.datastore.DatastoreService;
 import com.google.appengine.api.datastore.DatastoreServiceFactory;
 import com.google.code.twig.ObjectDatastore;
 import com.google.code.twig.annotation.AnnotationObjectDatastore;
+import com.google.gwt.user.client.Cookies;
 import com.google.inject.Guice;
 import com.google.inject.Injector;
 import com.google.inject.Provides;
@@ -47,16 +48,16 @@ public class GuiceServletConfig extends GuiceServletContextListener {
         return validatorFactory.getValidator();
       }
 
-//      @Provides
-//      @Singleton
-//      DatastoreService getDatastoreService(){
-//        return DatastoreServiceFactory.getDatastoreService();
-//      }
-
       @Provides
       @RequestScoped
       ObjectDatastore getObjectDatastore(){
         return new AnnotationObjectDatastore();
+      }
+
+      @Provides
+      @RequestScoped
+      User getCurrentUser(UserBase userBase){
+        return userBase.getCurrentUser(Cookies.getCookie("user"));
       }
     });
   }

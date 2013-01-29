@@ -1,12 +1,6 @@
 package com.easybanking.server;
 
-import com.google.appengine.api.datastore.DatastoreService;
 import com.google.appengine.api.datastore.Entity;
-import com.google.appengine.api.datastore.FetchOptions;
-import com.google.appengine.api.datastore.KeyFactory;
-import com.google.appengine.api.datastore.PreparedQuery;
-import com.google.appengine.api.datastore.PropertyProjection;
-import com.google.appengine.api.datastore.Query;
 import com.google.code.twig.ObjectDatastore;
 import com.google.common.collect.Lists;
 import com.google.inject.Inject;
@@ -18,13 +12,13 @@ import java.util.List;
 /**
  * @author Krasimir Dimitrov (kpackapgo@gmail.com, krasimir.dimitrov@clouway.com)
  */
-public class AccountRepositoryImpl implements AccountRepository {
+public class PersistenceAccountBase implements AccountBase {
 
 
   private final Provider<ObjectDatastore> datastore;
 
   @Inject
-  public AccountRepositoryImpl(Provider<ObjectDatastore> datastore) {
+  public PersistenceAccountBase(Provider<ObjectDatastore> datastore) {
     this.datastore = datastore;
   }
 
