@@ -23,6 +23,4 @@ public class PersistenceAccountBase implements AccountBase {
     this.datastore = datastore;
     this.currentUser = currentUser;
   }
-
-
 }
