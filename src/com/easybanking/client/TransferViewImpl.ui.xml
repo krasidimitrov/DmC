@@ -1,0 +1,55 @@
+<ui:UiBinder xmlns:ui='urn:ui:com.google.gwt.uibinder'
+             xmlns:g='urn:import:com.google.gwt.user.client.ui'>
+
+
+  <ui:style>
+    .transferPanelStyle {
+      /*width: 400px;*/
+      /*margin-top: -200px;;*/
+      /*margin-left: 220px;*/
+      /*margin-right: auto;*/
+      /*background-color: rgba(255, 0, 28, 0.99);*/
+    }
+
+    .accountStyle{
+      width: 100px
+    }
+    .balanceStyle{
+        margin-top: -20px;
+        margin-left: 315px;
+    }
+    .currencyStyle{
+      margin-top: -20px;
+      margin-left: 300px;
+    }
+
+    .transferStyle{
+      margin-top: 20px;
+    }
+
+  </ui:style>
+
+
+
+  <g:HTMLPanel styleName="{style.transferPanelStyle}">
+  Transfer from
+  <g:ListBox styleName="{style.accountStyle}" ui:field="accountBox" />
+  with balance
+  <g:Label styleName="{style.balanceStyle}" ui:field="balanceLabel">200</g:Label>
+  <g:Label styleName="{style.currencyStyle}" ui:field="currencyLabel">$</g:Label>
+  <g:TextBox ui:field="amountBox"  maxLength="4" visibleLength="3"/>
+  to account:
+  <g:TextBox ui:field="receiverAccountBox"/>
+  <g:Button styleName="{style.transferStyle}" ui:field="transferButton">Transfer</g:Button>
+  <br />
+  <br />
+  <br />
+  <br />
+  <br />
+   -You can transfer up to 4 digit sums
+   <br />
+   <br />
+   -The currency is automatically converted to the receiver account type
+
+  </g:HTMLPanel>
+</ui:UiBinder>
