@@ -22,12 +22,10 @@ public class PersistenceAccountBase implements AccountBase {
     this.datastore = datastore;
   }
 
-  @Override
   public void createTestData() {
 
   }
 
-  @Override
   public List<String> getAccountNumbersByUser(String user) {
 //    Query query = new Query("Account");
 //    query.setAncestor(KeyFactory.createKey("User",user));
@@ -38,7 +36,6 @@ public class PersistenceAccountBase implements AccountBase {
     return Lists.newArrayList("abc123bg","bbb321gg");
   }
 
-  @Override
   public Account getAccount(String username, String number) {
 //    Query query = new Query("Account");
 ////    query.setAncestor(KeyFactory.createKey("User", username));

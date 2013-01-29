@@ -9,9 +9,5 @@ import java.util.List;
  */
 @ImplementedBy(PersistenceAccountBase.class)
 public interface AccountBase {
-  public void createTestData();
 
-  public List<String> getAccountNumbersByUser(String user);
-
-  Account getAccount(String username, String number);
 }

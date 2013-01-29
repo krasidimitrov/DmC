@@ -26,27 +26,10 @@ public class AccountPresenter implements Presenter {
   }
 
   public void fillAccountNumbers(){
-    requestFactory.accountRequest().getAccountNumbersByName(userProvider.getUsername()).to(new Receiver<List<String>>() {
-      @Override
-      public void onSuccess(List<String> strings) {
-        accountView.fillAccountNumbers(strings);
-      }
-    }).fire();
+
   }
 
   public void setAccountInfo(String accountNumber){
-
-    requestFactory.accountRequest().getAccount(userProvider.getUsername(), accountNumber).to(new Receiver<AccountProxy>() {
-      @Override
-      public void onSuccess(AccountProxy accountProxy) {
-        Window.alert(accountProxy.getNumber() +"-----" +String.valueOf(accountProxy.getBalance())+"-----" +accountProxy.getCurrency()+"-----" +String.valueOf(accountProxy.getInterest()));
-      }
-
-      @Override
-      public void onFailure(ServerFailure error) {
-        super.onFailure(error);
-      }
-    }).fire();
 
   }
 }

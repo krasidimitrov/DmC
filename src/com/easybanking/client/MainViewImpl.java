@@ -94,23 +94,6 @@ public class MainViewImpl  extends Composite{
   }
 
   public void insertTestData(){
-    requestFactory.accountRequest().test().fire(new Receiver<Void>() {
-      @Override
-      public void onSuccess(Void aVoid) {
-        Window.alert("POk");
-      }
-    });
 
-   /*requestFactory.accountRequest().createTestData().to(new Receiver<Void>() {
-     @Override
-     public void onSuccess(Void response) {
-       Window.alert("Test data added!");
-     }
-
-     @Override
-     public void onFailure(ServerFailure error) {
-       Window.alert("Test data failed!");
-     }
-   }).fire();*/
   }
 }
