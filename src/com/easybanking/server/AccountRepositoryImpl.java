@@ -7,7 +7,10 @@ import com.google.appengine.api.datastore.KeyFactory;
 import com.google.appengine.api.datastore.PreparedQuery;
 import com.google.appengine.api.datastore.PropertyProjection;
 import com.google.appengine.api.datastore.Query;
+import com.google.code.twig.ObjectDatastore;
+import com.google.common.collect.Lists;
 import com.google.inject.Inject;
+import com.google.inject.Provider;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,55 +20,38 @@ import java.util.List;
  */
 public class AccountRepositoryImpl implements AccountRepository {
 
-  private DatastoreService datastoreService;
+
+  private final Provider<ObjectDatastore> datastore;
 
   @Inject
-  public AccountRepositoryImpl(DatastoreService datastoreService) {
-    this.datastoreService = datastoreService;
+  public AccountRepositoryImpl(Provider<ObjectDatastore> datastore) {
+    this.datastore = datastore;
   }
 
   @Override
   public void createTestData() {
-    Entity testUser = new Entity("User","test@gmail.com");
-    testUser.setProperty("password", "12345");
-    datastoreService.put(testUser);
-    Entity testUser2 = new Entity("User", "test2@gmail.com");
-    testUser2.setProperty("password", "12345");
-    datastoreService.put(testUser2);
-    Entity account = new Entity("Account", KeyFactory.createKey("User", "test@gmail.com"));
-    account.setProperty("number", "bg1234512345");
-    account.setProperty("balance",300);
-    account.setProperty("currency","bgn");
-    account.setProperty("interest", 5);
-    Entity account2 = new Entity("Account", KeyFactory.createKey("User", "test@gmail.com"));
-    account2.setProperty("number", "bg5555555555");
-    account2.setProperty("balance",5000);
-    account2.setProperty("currency","usd");
-    account2.setProperty("interest", 5.5);
-    datastoreService.put(account);
-    datastoreService.put(account2);
 
   }
 
   @Override
   public List<String> getAccountNumbersByUser(String user) {
-    Query query = new Query("Account");
-    query.setAncestor(KeyFactory.createKey("User",user));
-    query.addProjection(new PropertyProjection("number", String.class));
-
-    PreparedQuery preparedQuery = datastoreService.prepare(query);
-    return convertToStringList(preparedQuery.asList(FetchOptions.Builder.withDefaults()));
+//    Query query = new Query("Account");
+//    query.setAncestor(KeyFactory.createKey("User",user));
+//    query.addProjection(new PropertyProjection("number", String.class));
+//
+//    PreparedQuery preparedQuery = datastoreService.prepare(query);
+//    return convertToStringList(preparedQuery.asList(FetchOptions.Builder.withDefaults()));
+    return Lists.newArrayList("abc123bg","bbb321gg");
   }
 
   @Override
   public Account getAccount(String username, String number) {
-    Query query = new Query("Account");
-//    query.setAncestor(KeyFactory.createKey("User", username));
-    query.setFilter(new Query.FilterPredicate("number", Query.FilterOperator.EQUAL,number));
-
-    PreparedQuery preparedQuery = datastoreService.prepare(query);
-    return convertToAccountObject(preparedQuery.asSingleEntity());
-
+//    Query query = new Query("Account");
+////    query.setAncestor(KeyFactory.createKey("User", username));
+//    query.setFilter(new Query.FilterPredicate("number", Query.FilterOperator.EQUAL,number));
+//    PreparedQuery preparedQuery = datastoreService.prepare(query);
+//    return convertToAccountObject(preparedQuery.asSingleEntity());
+     return new Account("abc123bg", 12, "bgn", 3);
   }
 
   private List<String> convertToStringList(List<Entity> listOfEntities) {
@@ -81,7 +67,6 @@ public class AccountRepositoryImpl implements AccountRepository {
     double balance = Double.parseDouble(String.valueOf(entity.getProperty("balance")));
     String currency = String.valueOf(entity.getProperty("currency"));
     double interest = Double.parseDouble(String.valueOf(entity.getProperty("interest")));
-
     return new Account(number,balance,currency,interest);
   }
 }

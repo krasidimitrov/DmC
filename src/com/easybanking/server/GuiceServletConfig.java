@@ -5,11 +5,14 @@ import com.easybanking.inject.MyConstraintValidatorFactory;
 import com.easybanking.inject.MyRequestFactoryServlet;
 import com.google.appengine.api.datastore.DatastoreService;
 import com.google.appengine.api.datastore.DatastoreServiceFactory;
+import com.google.code.twig.ObjectDatastore;
+import com.google.code.twig.annotation.AnnotationObjectDatastore;
 import com.google.inject.Guice;
 import com.google.inject.Injector;
 import com.google.inject.Provides;
 import com.google.inject.Singleton;
 import com.google.inject.servlet.GuiceServletContextListener;
+import com.google.inject.servlet.RequestScoped;
 import com.google.inject.servlet.ServletModule;
 
 import javax.validation.Validation;
@@ -47,10 +50,16 @@ public class GuiceServletConfig extends GuiceServletContextListener {
         return validatorFactory.getValidator();
       }
 
+//      @Provides
+//      @Singleton
+//      DatastoreService getDatastoreService(){
+//        return DatastoreServiceFactory.getDatastoreService();
+//      }
+
       @Provides
-      @Singleton
-      DatastoreService getDatastoreService(){
-        return DatastoreServiceFactory.getDatastoreService();
+      @RequestScoped
+      ObjectDatastore getObjectDatastore(){
+        return new AnnotationObjectDatastore();
       }
     });
   }

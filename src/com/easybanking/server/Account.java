@@ -3,11 +3,9 @@ package com.easybanking.server;
 /**
  * @author Krasimir Dimitrov (kpackapgo@gmail.com, krasimir.dimitrov@clouway.com)
  */
-public class Account {
+public class Account implements Entity {
 
   private Long id;
-
-  private Long version;
 
   private String currency;
 
@@ -16,6 +14,16 @@ public class Account {
   private String number;
 
   private Double balance;
+
+  private Long userId;
+
+  public Long getUserId() {
+    return userId;
+  }
+
+  public void setUserId(Long userId) {
+    this.userId = userId;
+  }
 
   public Account(String number, double balance, String currency, double interest){
     this.number = number;
@@ -28,16 +36,13 @@ public class Account {
     return id;
   }
 
+  @Override
+  public Integer getVersion() {
+    return 0;
+  }
+
   public void setId(Long id) {
     this.id = id;
-  }
-
-  public Long getVersion() {
-    return version;
-  }
-
-  public void setVersion(Long version) {
-    this.version = version;
   }
 
   public String getCurrency() {
