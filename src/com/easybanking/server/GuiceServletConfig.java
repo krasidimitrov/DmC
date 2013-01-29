@@ -33,9 +33,6 @@ public class GuiceServletConfig extends GuiceServletContextListener {
 
         serve("/gwtRequest").with(MyRequestFactoryServlet.class);
 
-        bind(AccountRepository.class).to(AccountRepositoryImpl.class);
-        bind(AccountService.class).to(AccountServiceImpl.class);
-
       }
 
       @Provides
