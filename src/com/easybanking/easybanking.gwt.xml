@@ -10,5 +10,6 @@
   <!-- Specify the app entry point class.                   -->
   <entry-point class='com.easybanking.client.EasyBanking'/>
 
-
+  <source path="client" />
+  <source path="server" />
 </module>

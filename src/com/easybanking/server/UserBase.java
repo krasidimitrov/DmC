@@ -9,4 +9,6 @@ import com.google.inject.ImplementedBy;
 public interface UserBase {
 
   public User getCurrentUser(String username);
+
+  User loginViaSession();
 }

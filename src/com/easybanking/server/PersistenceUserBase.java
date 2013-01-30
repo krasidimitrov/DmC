@@ -20,4 +20,8 @@ public class PersistenceUserBase implements UserBase {
   public User getCurrentUser(String username) {
     return datastore.get().find().type(User.class).addFilter("username", Query.FilterOperator.EQUAL, username).returnUnique().now();
   }
+
+  public User loginViaSession() {
+    return null;
+  }
 }
