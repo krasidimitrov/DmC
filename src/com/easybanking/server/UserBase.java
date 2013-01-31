@@ -11,4 +11,8 @@ public interface UserBase {
   public User getCurrentUser(String username);
 
   User loginViaSession();
+
+  User login(String username, String password);
+
+  void logout();
 }

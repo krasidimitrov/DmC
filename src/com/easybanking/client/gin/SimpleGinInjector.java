@@ -2,6 +2,7 @@ package com.easybanking.client.gin;
 
 import com.easybanking.client.BankRequestFactory;
 import com.easybanking.client.MainViewImpl;
+import com.easybanking.client.login.LoginView;
 import com.google.gwt.inject.client.GinModules;
 import com.google.gwt.inject.client.Ginjector;
 
@@ -13,4 +14,6 @@ public interface SimpleGinInjector extends Ginjector{
   MainViewImpl getMainViewImpl();
 
   BankRequestFactory getRequestFactory();
+
+  LoginView getLoginView();
 }

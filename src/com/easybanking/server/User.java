@@ -11,7 +11,7 @@ public class User implements Entity{
   private String username;
   private String password;
   private String email;
-
+  private boolean isLoggedIn = false;
 
   public Long getId() {
     return id;
@@ -51,5 +51,13 @@ public class User implements Entity{
 
   public void setEmail(String email) {
     this.email = email;
+  }
+
+  public boolean isLoggedIn() {
+    return isLoggedIn;
+  }
+
+  public void setLoggedIn(boolean loggedIn) {
+    isLoggedIn = loggedIn;
   }
 }

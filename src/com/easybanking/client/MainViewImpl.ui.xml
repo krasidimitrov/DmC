@@ -34,7 +34,6 @@
 
 
   <g:HTMLPanel ui:field="mainPanel" styleName="{style.mainPanelStyle}">
-    <h3 style="margin-left: 20px;">Menu</h3>
     <g:VerticalPanel>
       <g:Button ui:field="accountTabButton">Account info</g:Button>
       <g:Button ui:field="transferTabButton">Transfer money</g:Button>

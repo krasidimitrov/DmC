@@ -2,6 +2,9 @@ package com.easybanking.client.gin;
 
 
 import com.easybanking.client.*;
+import com.easybanking.client.login.Login;
+import com.easybanking.client.login.LoginView;
+import com.easybanking.client.login.LoginViewImpl;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.inject.client.AbstractGinModule;
 import com.google.inject.Provides;
@@ -29,5 +32,16 @@ public class SimpleGinModule extends AbstractGinModule{
     BankRequestFactory bankRequestFactory = GWT.create(BankRequestFactory.class);
     bankRequestFactory.initialize(eventBus);
     return bankRequestFactory;
+  }
+
+  @Provides
+  @Singleton
+  LoginView getLoginView(BankRequestFactory requestFactory) {
+
+    LoginView loginView = new LoginViewImpl();
+    Login login = new Login(loginView, requestFactory);
+    loginView.setPresenter(login);
+
+    return loginView;
   }
 }

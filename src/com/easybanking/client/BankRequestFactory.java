@@ -23,6 +23,10 @@ public interface BankRequestFactory extends RequestFactory {
   @Service(value = UserBase.class, locator = MyServiceLocator.class)
   public interface LoginRequest extends RequestContext {
     Request<UserProxy> loginViaSession();
+
+    Request<UserProxy> login(String username, String password);
+
+    Request<Void> logout();
   }
 
   LoginRequest getLoginRequest();

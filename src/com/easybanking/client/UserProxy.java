@@ -30,4 +30,6 @@ public interface UserProxy extends EntityProxy {
   public String getEmail();
 
   public void setEmail(String email);
+
+  boolean isLoggedIn();
 }

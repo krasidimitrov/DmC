@@ -1,7 +1,11 @@
 package com.easybanking.client;
 
+import com.easybanking.client.login.Login;
+import com.easybanking.client.login.LoginView;
+import com.easybanking.client.login.LoginViewImpl;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
+import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.event.shared.SimpleEventBus;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
@@ -10,6 +14,7 @@ import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.HTMLPanel;
+import com.google.gwt.user.client.ui.RootPanel;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.inject.Inject;
 import com.google.web.bindery.event.shared.EventBus;
@@ -25,6 +30,34 @@ public class MainViewImpl  extends Composite{
   private CalculatorView calculatorView;
   private TransferView transferView;
   private UserProvider userProvider;
+
+  public void showLogoutButton() {
+
+    Button logout = new Button("logout");
+    logout.addClickHandler(new ClickHandler() {
+
+      @Override
+      public void onClick(ClickEvent event) {
+
+        requestFactory.getLoginRequest().logout().fire(new Receiver<Void>() {
+          @Override
+          public void onSuccess(Void response) {
+
+            RootPanel.get().clear();
+
+            LoginView loginView = new LoginViewImpl();
+            Login login = new Login(loginView, requestFactory);
+            loginView.setPresenter(login);
+            loginView.setMainView(new MainViewImpl(requestFactory, userProvider, accountView, transferView, creditView, calculatorView));
+
+            RootPanel.get().add((Widget) loginView);
+          }
+        });
+      }
+    });
+
+    RootPanel.get().add(logout);
+  }
 
   interface MainViewImplUiBinder extends UiBinder<HTMLPanel, MainViewImpl> {
   }
@@ -48,7 +81,7 @@ public class MainViewImpl  extends Composite{
   HTMLPanel viewPanel;
 
   @Inject
-  public MainViewImpl(BankRequestFactory requestFactory, UserProvider userProvider, AccountView accountView, TransferView transferView, CreditView creditView, CalculatorView calculatorView) {
+  public MainViewImpl(final BankRequestFactory requestFactory, final UserProvider userProvider, final AccountView accountView, final TransferView transferView, final CreditView creditView, final CalculatorView calculatorView) {
     this.userProvider = userProvider;
 
     initWidget(ourUiBinder.createAndBindUi(this));
@@ -85,7 +118,6 @@ public class MainViewImpl  extends Composite{
   public void onCalculatorButtonClicked(ClickEvent event){
     changeEditor((Widget) calculatorView, new CalculatorPresenter(requestFactory, calculatorView));
   }
-
 
   private void changeEditor(Widget newActiveEditor, Presenter presenter) {
     viewPanel.remove(activeEditor);

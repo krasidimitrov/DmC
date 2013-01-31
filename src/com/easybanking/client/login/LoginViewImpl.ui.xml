@@ -1,0 +1,93 @@
+<ui:UiBinder xmlns:ui='urn:ui:com.google.gwt.uibinder'
+             xmlns:g='urn:import:com.google.gwt.user.client.ui'>
+  <ui:style>
+
+    .containerStyle {
+      -webkit-border-radius: 5px;
+      -moz-border-radius: 5px;
+      border-radius: 5px;
+
+      border-style: solid;
+      border-color: #a9a9a9;
+      border-width: 1px;
+
+      width: 280px;
+      margin-left: auto;
+      margin-right: auto;
+      margin-top: 100px;
+    }
+
+
+    .labelStyle {
+      float: left;
+      width: 90px;
+      text-align: right;
+      margin-top: 3px;
+    }
+
+    .clearBoth {
+      clear: both;
+    }
+
+    .fieldContainer {
+      margin-top: 5px;
+      margin-bottom: 5px;
+    }
+
+    .loginButton {
+      float: right;
+      margin-right: 15;
+      margin-bottom: 10px;
+    }
+
+    .errorPanel {
+      -webkit-border-radius: 5px;
+      -moz-border-radius: 5px;
+      border-radius: 5px;
+
+      border-style: solid;
+      border-color: #a9a9a9;
+      border-width: 1px;
+
+      width: 16%;
+      margin-left: auto;
+      margin-right: auto;
+      margin-top: 20px;
+
+      text-align: center;
+      padding: 5px 0 5px 0;
+
+      background-color: #faebd7;
+    }
+
+    .logoutButton {
+      float: right;
+    }
+
+  </ui:style>
+
+  <g:HTMLPanel>
+
+    <g:HTMLPanel addStyleNames="{style.containerStyle}">
+      <div class="{style.fieldContainer}">
+        <g:Label text="Username:" addStyleNames="{style.labelStyle}"/>
+        <g:TextBox ui:field="username" />
+      </div>
+      <div class="{style.clearBoth}" />
+
+      <div class="{style.fieldContainer}">
+        <g:Label text="Password:" addStyleNames="{style.labelStyle}"/>
+        <g:PasswordTextBox ui:field="password" />
+      </div>
+      <div class="{style.clearBoth}" />
+
+      <g:Button ui:field="loginButton" text="Login" addStyleNames="{style.loginButton}"/>
+      <div class="{style.clearBoth}" />
+    </g:HTMLPanel>
+
+    <g:HTMLPanel ui:field="errorPanel" addStyleNames="{style.errorPanel}" visible="false">
+      <g:Label ui:field="errorMessage" />
+    </g:HTMLPanel>
+
+  </g:HTMLPanel>
+</ui:UiBinder>
