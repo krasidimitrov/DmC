@@ -31,25 +31,14 @@ public class AccountViewImpl extends Composite implements AccountView{
 
   private static AccountViewImplUiBinder ourUiBinder = GWT.create(AccountViewImplUiBinder.class);
 
-  @UiField
-  ListBox accountList;
-;
+
 
   public AccountViewImpl() {
     initWidget(ourUiBinder.createAndBindUi(this));
-    accountList.setVisibleItemCount(10);
   }
 
   @Override
   public void fillAccountNumbers(List<String> numbers) {
-    for(String number : numbers) {
-      accountList.addItem(number);
-    }
-  }
-
-  @UiHandler("accountList")
-  public void onItemSelected(ClickEvent event){
-    presenter.setAccountInfo(accountList.getItemText(accountList.getSelectedIndex()));
   }
 
 }

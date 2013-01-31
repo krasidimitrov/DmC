@@ -6,20 +6,17 @@ import com.easybanking.client.login.LoginViewImpl;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
-import com.google.gwt.event.shared.SimpleEventBus;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.uibinder.client.UiHandler;
-import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.HTMLPanel;
+import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.RootPanel;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.inject.Inject;
-import com.google.web.bindery.event.shared.EventBus;
 import com.google.web.bindery.requestfactory.shared.Receiver;
-import com.google.web.bindery.requestfactory.shared.ServerFailure;
 
 /**
  * @author Krasimir Dimitrov (kpackapgo@gmail.com, krasimir.dimitrov@clouway.com)
@@ -68,13 +65,13 @@ public class MainViewImpl  extends Composite{
   private BankRequestFactory requestFactory;
 
   @UiField
-  Button accountTabButton;
+  Label accountTabButton;
   @UiField
-  Button transferTabButton;
+  Label transferTabButton;
   @UiField
-  Button creditTabButton;
+  Label creditTabButton;
   @UiField
-  Button calculatorTabButton;
+  Label calculatorTabButton;
   @UiField
   HTMLPanel mainPanel;
   @UiField

@@ -6,27 +6,48 @@
       margin-right: auto;
       margin-top: 200px;
 
-      width: 800px;
+      width: 880px;
       height: 600px;
       background-color: rgba(102, 102, 107, 0.23);
-    }
-
-    @external .gwt-Button;
-    .gwt-Button {
-      margin-bottom: 30px;
-      color: rgb(0, 0, 0);
-      font-style: bold;
-      width: 140px;
-      height: 30px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+      border: 2px solid rgba(0, 0, 0, 0.2);
+      -webkit-border-radius: 15px;
+      -moz-border-radius: 15px;
+      border-radius: 15px;
     }
 
     .viewPanelStyle {
       text-align: center;
       background-color: rgba(115, 115, 115, 0.20);
-      margin-top: -200px;
-      margin-left: 150px;
-      width: 540px;
-      height: 300px;
+      width: 640px;
+      height: 550px;
+      margin-top: 25px;
+      float: left;
+      margin-left: 30px;
+    }
+
+    .menuStyle {
+      margin-top: 180px;
+      width: 160px;
+      height: 200px;
+      float: left;
+      margin-left: 25px;
+    }
+
+    .menuButton {
+      text-align: center;
+      padding-top: 10px;
+      padding-bottom: 10px;
+      margin-bottom: 10px;
+      background-color: #c2c2c2;
+      -webkit-border-radius: 15px;
+      -moz-border-radius: 15px;
+      border-radius: 15px;
+    }
+
+    .menuButton:HOVER {
+      background-color: #f0ffff;
+      cursor: pointer;
     }
   </ui:style>
 
@@ -34,14 +55,13 @@
 
 
   <g:HTMLPanel ui:field="mainPanel" styleName="{style.mainPanelStyle}">
-    <g:VerticalPanel>
-      <g:Button ui:field="accountTabButton">Account info</g:Button>
-      <g:Button ui:field="transferTabButton">Transfer money</g:Button>
-      <g:Button ui:field="creditTabButton">Credit payments</g:Button>
-      <g:Button ui:field="calculatorTabButton">Currency calculator</g:Button>
-    </g:VerticalPanel>
-    <g:HTMLPanel styleName="{style.viewPanelStyle}" ui:field="viewPanel">
 
+    <g:HTMLPanel styleName="{style.menuStyle}">
+      <g:Label ui:field="accountTabButton" styleName="{style.menuButton}">Account info</g:Label>
+      <g:Label ui:field="transferTabButton" styleName="{style.menuButton}">Transfer money</g:Label>
+      <g:Label ui:field="creditTabButton" styleName="{style.menuButton}">Credit payments</g:Label>
+      <g:Label ui:field="calculatorTabButton" styleName="{style.menuButton}">Currency calculator</g:Label>
     </g:HTMLPanel>
+    <g:HTMLPanel styleName="{style.viewPanelStyle}" ui:field="viewPanel" />
   </g:HTMLPanel>
 </ui:UiBinder>

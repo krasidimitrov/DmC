@@ -2,15 +2,53 @@
              xmlns:g='urn:import:com.google.gwt.user.client.ui'>
 
   <ui:style>
-    .listStyle{
-      margin-top: 50px;
-      margin-left: -400px;
+    .accountListStyle {
+      margin-left: 10px;
+      margin-top: 65px;
+      float: left;
+      width: 160px;
+      height: 200px;
+      background-color: #7fffd4;
+      vertical-align: middle;
+      -webkit-border-radius: -10px;
+      -moz-border-radius: -10px;
+      border-radius: -10px;
     }
 
+    .accountInfo {
+      margin-top: 10px;
+      margin-right: 10px;;
+      float: right;
+      width: 300px;
+      height: 330px;
+      background-color: #dda0dd;
+
+    }
+
+    .topPanel {
+      margin-left: auto;
+      margin-right: auto;
+      width: 620px;
+      height: 350px;
+      margin-top: 10px;
+      border: 1px solid rgba(18, 18, 18, 0.32);
+      box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+
+    }
+
+    .clearBoth {
+      clear: both;
+    }
   </ui:style>
 
 
   <g:HTMLPanel>
-    <g:ListBox styleName="{style.listStyle}" ui:field="accountList"/>
+    <g:HTMLPanel styleName="{style.topPanel}">
+      <g:HTMLPanel ui:field="accountList" styleName="{style.accountListStyle}">
+      <g:Label>123456789asdfghj</g:Label>
+      </g:HTMLPanel>
+      <g:HTMLPanel ui:field="accountInfo" styleName="{style.accountInfo}"/>
+      <div class="{style.clearBoth}" />
+    </g:HTMLPanel>
   </g:HTMLPanel>
 </ui:UiBinder>
