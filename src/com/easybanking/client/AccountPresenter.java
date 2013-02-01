@@ -26,10 +26,13 @@ public class AccountPresenter implements Presenter {
   }
 
   public void fillAccountNumbers(){
-
+    requestFactory.accountRequest().loadAccounts().to(new Receiver<List<String>>() {
+      @Override
+      public void onSuccess(List<String> response) {
+        accountView.loadAccounts(response);
+      }
+    }).fire();
   }
 
-  public void setAccountInfo(String accountNumber){
 
-  }
 }

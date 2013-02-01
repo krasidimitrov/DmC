@@ -1,13 +1,15 @@
 package com.easybanking.server;
 
+import com.google.code.twig.annotation.Id;
+
 /**
  * @author Krasimir Dimitrov (krasimir.dimitrov@clouway.com, kpackapgo@gmail.com)
  */
 public class User implements Entity{
 
-
+  @Id
   private Long id;
-  private Integer version;
+  private Integer version = 0;
   private String username;
   private String password;
   private String email;

@@ -57,7 +57,7 @@ public class GuiceServletConfig extends GuiceServletContextListener {
       @Provides
       @RequestScoped
       User getCurrentUser(UserBase userBase){
-        return userBase.getCurrentUser(Cookies.getCookie("user"));
+        return userBase.loginViaSession();
       }
     });
   }

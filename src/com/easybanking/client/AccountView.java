@@ -8,5 +8,5 @@ import java.util.List;
 public interface AccountView {
   void setPresenter(AccountPresenter presenter);
 
-  void fillAccountNumbers(List<String> numbers);
+  void loadAccounts(List<String> accounts);
 }

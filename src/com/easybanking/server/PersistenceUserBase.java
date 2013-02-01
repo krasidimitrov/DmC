@@ -80,10 +80,27 @@ public class PersistenceUserBase implements UserBase {
     if (users.size() == 0) {
       User user = new User();
       user.setUsername("krasi");
+      user.setId(1l);
       user.setEmail("krasi@gmail.com");
       user.setPassword("1234");
 
-      datastore.get().storeOrUpdate(user);
+      User user2 = new User();
+      user2.setId(2l);
+      user2.setUsername("eli");
+      user2.setEmail("eli_eli@gmail.com");
+      user2.setPassword("1234");
+
+      Account account = new Account(1l, "BG64BUIN95611000127222", 350, "usd", 2.5);
+      account.setId(500l);
+      Account account2 = new Account(1l, "BG64BUIN95611000127333", 500, "eur", 2);
+      account2.setId(501l);
+      Account account3 = new Account(1l, "BG64BUIN95611000127444", 200, "bgn", 3);
+      account3.setId(502l);
+      datastore.get().store(account);
+      datastore.get().store(account2);
+      datastore.get().store(account3);
+      datastore.get().store(user);
+      datastore.get().store(user2);
     }
   }
 }

@@ -9,5 +9,5 @@ import java.util.List;
  */
 @ImplementedBy(PersistenceAccountBase.class)
 public interface AccountBase {
-
+  public List<String> loadAccounts();
 }

@@ -25,7 +25,12 @@ public class Account implements Entity {
     this.userId = userId;
   }
 
-  public Account(String number, double balance, String currency, double interest){
+  public Account(){
+
+  }
+
+  public Account(Long userId, String number, double balance, String currency, double interest){
+    this.userId = userId;
     this.number = number;
     this.balance = balance;
     this.currency = currency;

@@ -1,6 +1,7 @@
 package com.easybanking.server;
 
 import com.google.appengine.api.datastore.Entity;
+import com.google.appengine.api.datastore.Query;
 import com.google.code.twig.ObjectDatastore;
 import com.google.common.collect.Lists;
 import com.google.inject.Inject;
@@ -22,5 +23,16 @@ public class PersistenceAccountBase implements AccountBase {
   public PersistenceAccountBase(Provider<ObjectDatastore> datastore, Provider<User> currentUser) {
     this.datastore = datastore;
     this.currentUser = currentUser;
+  }
+
+  @Override
+  public List<String> loadAccounts() {
+    List<Account> accounts = datastore.get().find().type(Account.class)
+            .addFilter("userId", Query.FilterOperator.EQUAL, currentUser.get().getId()).returnAll().now();
+    List<String> stringAccounts = new ArrayList<String>();
+    for(Account account : accounts){
+      stringAccounts.add(account.getNumber());
+    }
+    return stringAccounts;
   }
 }

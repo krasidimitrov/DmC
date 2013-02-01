@@ -8,6 +8,8 @@ import com.google.web.bindery.requestfactory.shared.RequestContext;
 import com.google.web.bindery.requestfactory.shared.RequestFactory;
 import com.google.web.bindery.requestfactory.shared.Service;
 
+import java.util.List;
+
 /**
  * @author Krasimir Dimitrov (kpackapgo@gmail.com, krasimir.dimitrov@clouway.com)
  */
@@ -16,6 +18,7 @@ public interface BankRequestFactory extends RequestFactory {
   @Service(value = AccountBase.class, locator = MyServiceLocator.class)
   public interface AccountRequest extends RequestContext {
 
+    Request<List<String>> loadAccounts();
   }
 
   AccountRequest accountRequest();

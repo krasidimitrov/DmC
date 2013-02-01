@@ -10,8 +10,10 @@ import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.HTMLPanel;
+import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.ListBox;
 
+import java.awt.peer.LabelPeer;
 import java.util.List;
 
 /**
@@ -32,13 +34,20 @@ public class AccountViewImpl extends Composite implements AccountView{
   private static AccountViewImplUiBinder ourUiBinder = GWT.create(AccountViewImplUiBinder.class);
 
 
+  @UiField
+  HTMLPanel accountList;
 
   public AccountViewImpl() {
     initWidget(ourUiBinder.createAndBindUi(this));
   }
 
   @Override
-  public void fillAccountNumbers(List<String> numbers) {
+  public void loadAccounts(List<String> accounts) {
+    accountList.clear();
+    for(String account : accounts){
+      Label acc = new Label(account);
+      accountList.add(acc);
+    }
   }
 
 }
