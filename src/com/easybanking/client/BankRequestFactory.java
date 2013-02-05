@@ -18,7 +18,14 @@ public interface BankRequestFactory extends RequestFactory {
   @Service(value = AccountBase.class, locator = MyServiceLocator.class)
   public interface AccountRequest extends RequestContext {
 
-    Request<List<String>> loadAccounts();
+    Request<List<String>> loadAccountNumbers();
+
+    Request<AccountProxy> loadAccountByNumber(String number);
+
+    Request<List<AccountProxy>> loadAccounts();
+
+    Request<TransactionProxy> sendMoney(double amount, String yourAccountNumber, String theirAccountNumber);
+
   }
 
   AccountRequest accountRequest();

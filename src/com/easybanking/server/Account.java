@@ -9,11 +9,11 @@ public class Account implements Entity {
 
   private String currency;
 
-  private Double interest;
+  private double interest;
 
   private String number;
 
-  private Double balance;
+  private double balance;
 
   private Long userId;
 
@@ -58,11 +58,11 @@ public class Account implements Entity {
     this.currency = currency;
   }
 
-  public Double getInterest() {
+  public double getInterest() {
     return interest;
   }
 
-  public void setInterest(Double interest) {
+  public void setInterest(double interest) {
     this.interest = interest;
   }
 
@@ -74,11 +74,11 @@ public class Account implements Entity {
     this.number = number;
   }
 
-  public Double getBalance() {
+  public double getBalance() {
     return balance;
   }
 
-  public void setBalance(Double balance) {
+  public void setBalance(double balance) {
     this.balance = balance;
   }
 }

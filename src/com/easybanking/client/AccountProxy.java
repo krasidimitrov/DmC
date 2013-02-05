@@ -22,15 +22,15 @@ public interface AccountProxy extends EntityProxy {
 
   public void setCurrency(String currency);
 
-  public Double getInterest();
+  public double getInterest();
 
-  public void setInterest(Double interest);
+  public void setInterest(double interest);
 
   public String getNumber();
 
   public void setNumber(String number);
 
-  public Double getBalance();
+  public double getBalance();
 
-  public void setBalance(Double balance);
+  public void setBalance(double balance);
 }

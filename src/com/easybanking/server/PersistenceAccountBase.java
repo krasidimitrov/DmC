@@ -26,7 +26,7 @@ public class PersistenceAccountBase implements AccountBase {
   }
 
   @Override
-  public List<String> loadAccounts() {
+  public List<String> loadAccountNumbers() {
     List<Account> accounts = datastore.get().find().type(Account.class)
             .addFilter("userId", Query.FilterOperator.EQUAL, currentUser.get().getId()).returnAll().now();
     List<String> stringAccounts = new ArrayList<String>();
@@ -35,4 +35,33 @@ public class PersistenceAccountBase implements AccountBase {
     }
     return stringAccounts;
   }
+
+  @Override
+  public Account loadAccountByNumber(String number) {
+    return datastore.get().find().type(Account.class).addFilter("number", Query.FilterOperator.EQUAL, number).returnUnique().now();
+  }
+
+  @Override
+  public List<Account> loadAccounts() {
+    return datastore.get().find().type(Account.class).addFilter("userId", Query.FilterOperator.EQUAL, currentUser.get().getId()).returnAll().now();
+  }
+
+  @Override
+  public Transaction sendMoney(double amount, String yourAccountNumber, String theirAccountNumber) {
+    Account yourAccount = loadAccountByNumber(yourAccountNumber);
+    Account theirAccount = loadAccountByNumber(theirAccountNumber);
+    yourAccount.setBalance(yourAccount.getBalance()-amount);
+    theirAccount.setBalance(theirAccount.getBalance()+amount);
+    datastore.get().update(yourAccount);
+    datastore.get().update(theirAccount);
+    Transaction transaction = new Transaction(currentUser.get().getId(), yourAccountNumber, theirAccountNumber, yourAccount.getBalance()-amount, yourAccount.getBalance(), yourAccount.getCurrency());
+    datastore.get().store(transaction);
+    return transaction;
+  }
+
+  //loadTransaction 0
+  //loadTransaction 1
+  //save contact
+  //load contactAccountsNumbers
+
 }

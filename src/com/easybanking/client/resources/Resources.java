@@ -22,4 +22,8 @@ public interface Resources extends ClientBundle {
 
   @Source(value = "grey.jpg")
   ImageResource grey();
+
+  @Source(value = "tt.png")
+  ImageResource tt();
+
 }

@@ -9,4 +9,6 @@ public interface AccountView {
   void setPresenter(AccountPresenter presenter);
 
   void loadAccounts(List<String> accounts);
+
+  void renderAccountInfo(AccountProxy response);
 }

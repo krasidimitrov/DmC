@@ -1,27 +1,28 @@
 <ui:UiBinder xmlns:ui='urn:ui:com.google.gwt.uibinder'
              xmlns:g='urn:import:com.google.gwt.user.client.ui'>
 
-  <ui:style>
+  <ui:style type="com.easybanking.client.AccountViewImpl.Style">
     .accountListStyle {
       margin-left: 10px;
       margin-top: 65px;
       float: left;
       width: 240px;
       height: 200px;
-      background-color: #7fffd4;
+      background-color: #dddedc;
       vertical-align: middle;
-      -webkit-border-radius: -10px;
-      -moz-border-radius: -10px;
-      border-radius: -10px;
+      border: 1px solid rgba(18, 18, 18, 0.32);
+      /*-webkit-border-radius: 10px;*/
+      /*-moz-border-radius: 10px;*/
+      /*border-radius: 10px;*/
     }
 
     .accountInfo {
       margin-top: 10px;
       margin-right: 10px;;
       float: right;
-      width: 300px;
+      width: 350px;
       height: 330px;
-      background-color: #dda0dd;
+      background-color: #a59edb;
 
     }
 
@@ -32,12 +33,33 @@
       height: 350px;
       margin-top: 10px;
       border: 1px solid rgba(18, 18, 18, 0.32);
-      box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 
+    }
+
+    .accountNumberStyle {
+      cursor: pointer;
+      background-color: #a8c5d8;
+      padding-right: 5px;
+      padding-left: 5px;
+      padding-top: 10px;
+      padding-bottom: 10px;
+      font-size: 15px;
+      border: 1px solid rgba(18, 18, 18, 0.32);
+    }
+
+    .accountNumberStyle:HOVER {
+      background-color: #a59edb;
+      font-weight: bold;
     }
 
     .clearBoth {
       clear: both;
+    }
+
+    .accountInfoLabelStyle{
+      padding-top: 20px;
+      padding-bottom: 20px;
     }
   </ui:style>
 
@@ -45,9 +67,12 @@
   <g:HTMLPanel>
     <g:HTMLPanel styleName="{style.topPanel}">
       <g:HTMLPanel ui:field="accountList" styleName="{style.accountListStyle}">
-      <g:Label>123456789asdfghj</g:Label>
       </g:HTMLPanel>
-      <g:HTMLPanel ui:field="accountInfo" styleName="{style.accountInfo}"/>
+      <g:HTMLPanel ui:field="accountInfo" styleName="{style.accountInfo}">
+        <g:Label ui:field="balance" styleName="{style.accountInfoLabelStyle}">balance: </g:Label>
+        <g:Label ui:field="interestRate" styleName="{style.accountInfoLabelStyle}">interest rate: 2.5%</g:Label>
+        <g:Label ui:field="interestPeriod" styleName="{style.accountInfoLabelStyle}">Interest Accrual Period: </g:Label>
+      </g:HTMLPanel>
       <div class="{style.clearBoth}" />
     </g:HTMLPanel>
   </g:HTMLPanel>

@@ -9,5 +9,11 @@ import java.util.List;
  */
 @ImplementedBy(PersistenceAccountBase.class)
 public interface AccountBase {
-  public List<String> loadAccounts();
+  List<String> loadAccountNumbers();
+
+  Account loadAccountByNumber(String number);
+
+  List<Account> loadAccounts();
+
+  Transaction sendMoney(double amount, String yourAccountNumber, String theirAccountNumber);
 }

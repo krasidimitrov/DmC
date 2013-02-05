@@ -1,9 +1,6 @@
 package com.easybanking.client;
 
-import com.google.gwt.user.client.Window;
-import com.google.inject.Inject;
 import com.google.web.bindery.requestfactory.shared.Receiver;
-import com.google.web.bindery.requestfactory.shared.ServerFailure;
 
 import java.util.List;
 
@@ -26,7 +23,7 @@ public class AccountPresenter implements Presenter {
   }
 
   public void fillAccountNumbers(){
-    requestFactory.accountRequest().loadAccounts().to(new Receiver<List<String>>() {
+    requestFactory.accountRequest().loadAccountNumbers().to(new Receiver<List<String>>() {
       @Override
       public void onSuccess(List<String> response) {
         accountView.loadAccounts(response);
@@ -35,4 +32,12 @@ public class AccountPresenter implements Presenter {
   }
 
 
+  public void fillAccountInfo(String accountNumber) {
+    requestFactory.accountRequest().loadAccountByNumber(accountNumber).to(new Receiver<AccountProxy>() {
+      @Override
+      public void onSuccess(AccountProxy response) {
+        accountView.renderAccountInfo(response);
+      }
+    }).fire();
+  }
 }
