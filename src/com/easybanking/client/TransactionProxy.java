@@ -2,14 +2,15 @@ package com.easybanking.client;
 
 import com.easybanking.server.PersistenceLongIdObjectLocator;
 import com.easybanking.server.Transaction;
+import com.google.web.bindery.requestfactory.shared.EntityProxy;
 import com.google.web.bindery.requestfactory.shared.ProxyFor;
 
 /**
  * @author Krasimir Dimitrov (krasimir.dimitrov@clouway.com, kpackapgo@gmail.com)
  */
 @ProxyFor(value = Transaction.class, locator = PersistenceLongIdObjectLocator.class)
-public interface TransactionProxy {
-  public Object getId();
+public interface TransactionProxy extends EntityProxy {
+  public Long getId();
 
   public Integer getVersion();
 

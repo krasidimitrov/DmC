@@ -35,8 +35,8 @@
   Transfer from
   <g:ListBox styleName="{style.accountStyle}" ui:field="accountBox" />
   with balance
-  <g:Label styleName="{style.balanceStyle}" ui:field="balanceLabel">200</g:Label>
-  <g:Label styleName="{style.currencyStyle}" ui:field="currencyLabel">$</g:Label>
+    <g:Label styleName="{style.balanceStyle}" ui:field="balanceLabel">200</g:Label>
+    <g:Label styleName="{style.currencyStyle}" ui:field="currencyLabel">$</g:Label>
   <g:TextBox ui:field="amountBox"  maxLength="4" visibleLength="3"/>
   to account:
   <g:TextBox ui:field="receiverAccountBox"/>

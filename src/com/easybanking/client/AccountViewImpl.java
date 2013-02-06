@@ -40,6 +40,8 @@ public class AccountViewImpl extends Composite implements AccountView{
     String accountInfo();
 
     String topPanel();
+
+    String accountInfoLabelStyle();
   }
 
   @UiField
@@ -52,7 +54,7 @@ public class AccountViewImpl extends Composite implements AccountView{
   @UiField
   Label interestRate;
   @UiField
-  Label interestPeriod;
+  Label interestInterval;
 
   public AccountViewImpl() {
     initWidget(ourUiBinder.createAndBindUi(this));
@@ -83,7 +85,9 @@ public class AccountViewImpl extends Composite implements AccountView{
     if(response.getCurrency().equals("eur"))
     balance.setText("balance: "+response.getBalance()+"€");
 
-    interestRate.setText("interest rate: "+response.getInterest());
+    interestRate.setText("interest rate: "+response.getInterest()+"%");
+
+    interestInterval.setText("Interest Accrual Period: "+ response.getInterestInterval()+ " months");
 
   }
 

@@ -17,6 +17,8 @@ public class Account implements Entity {
 
   private Long userId;
 
+  private int interestInterval;
+
   public Long getUserId() {
     return userId;
   }
@@ -29,12 +31,13 @@ public class Account implements Entity {
 
   }
 
-  public Account(Long userId, String number, double balance, String currency, double interest){
+  public Account(Long userId, String number, double balance, String currency, double interest, int interestInterval){
     this.userId = userId;
     this.number = number;
     this.balance = balance;
     this.currency = currency;
     this.interest = interest;
+    this.interestInterval = interestInterval;
   }
 
   public Long getId() {
@@ -80,5 +83,13 @@ public class Account implements Entity {
 
   public void setBalance(double balance) {
     this.balance = balance;
+  }
+
+  public int getInterestInterval() {
+    return interestInterval;
+  }
+
+  public void setInterestInterval(int interestInterval) {
+    this.interestInterval = interestInterval;
   }
 }

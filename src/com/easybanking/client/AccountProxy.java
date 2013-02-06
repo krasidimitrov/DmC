@@ -33,4 +33,8 @@ public interface AccountProxy extends EntityProxy {
   public double getBalance();
 
   public void setBalance(double balance);
+
+  public int getInterestInterval();
+
+  public void setInterestInterval(int interestInterval);
 }

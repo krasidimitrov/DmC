@@ -14,7 +14,7 @@ public class Contact implements Entity {
   private String accountNumber;
 
   @Override
-  public Object getId() {
+  public Long getId() {
     return id;
   }
 

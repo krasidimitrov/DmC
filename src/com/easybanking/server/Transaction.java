@@ -32,7 +32,7 @@ public class Transaction implements Entity {
   }
 
   @Override
-  public Object getId() {
+  public Long getId() {
     return id;
   }
 

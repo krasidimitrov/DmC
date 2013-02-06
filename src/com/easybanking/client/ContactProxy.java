@@ -11,7 +11,7 @@ import com.google.web.bindery.requestfactory.shared.ProxyFor;
 @ProxyFor(value = Contact.class, locator = PersistenceLongIdObjectLocator.class)
 public interface ContactProxy extends EntityProxy {
 
-  public Object getId();
+  public Long getId();
 
   public Integer getVersion();
 

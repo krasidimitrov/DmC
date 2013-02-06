@@ -70,8 +70,8 @@
       </g:HTMLPanel>
       <g:HTMLPanel ui:field="accountInfo" styleName="{style.accountInfo}">
         <g:Label ui:field="balance" styleName="{style.accountInfoLabelStyle}">balance: </g:Label>
-        <g:Label ui:field="interestRate" styleName="{style.accountInfoLabelStyle}">interest rate: 2.5%</g:Label>
-        <g:Label ui:field="interestPeriod" styleName="{style.accountInfoLabelStyle}">Interest Accrual Period: </g:Label>
+        <g:Label ui:field="interestRate" styleName="{style.accountInfoLabelStyle}">interest rate:</g:Label>
+        <g:Label ui:field="interestInterval" styleName="{style.accountInfoLabelStyle}">Interest Accrual Period: </g:Label>
       </g:HTMLPanel>
       <div class="{style.clearBoth}" />
     </g:HTMLPanel>

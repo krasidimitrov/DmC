@@ -90,11 +90,11 @@ public class PersistenceUserBase implements UserBase {
       user2.setEmail("eli_eli@gmail.com");
       user2.setPassword("1234");
 
-      Account account = new Account(1l, "BG64BUIN95611000127222", 350, "usd", 2.5);
+      Account account = new Account(1l, "BG64BUIN95611000127222", 350, "usd", 2.5, 6);
       account.setId(500l);
-      Account account2 = new Account(1l, "BG64BUIN95611000127333", 500, "eur", 2);
+      Account account2 = new Account(1l, "BG64BUIN95611000127333", 500, "eur", 2, 3);
       account2.setId(501l);
-      Account account3 = new Account(1l, "BG64BUIN95611000127444", 200, "bgn", 3);
+      Account account3 = new Account(1l, "BG64BUIN95611000127444", 200, "bgn", 4, 12);
       account3.setId(502l);
       datastore.get().store(account);
       datastore.get().store(account2);
