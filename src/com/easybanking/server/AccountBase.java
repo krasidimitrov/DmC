@@ -16,4 +16,12 @@ public interface AccountBase {
   List<Account> loadAccounts();
 
   Transaction sendMoney(double amount, String yourAccountNumber, String theirAccountNumber);
+
+  List<Transaction> loadInTransactions();
+
+  List<Transaction> loadOutTransactions();
+
+  void saveContact(String name, String accountName);
+
+  List<Contact> loadContacts();
 }

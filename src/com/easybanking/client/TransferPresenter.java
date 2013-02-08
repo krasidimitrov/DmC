@@ -18,6 +18,7 @@ public class TransferPresenter implements Presenter {
     fillInitialData();
   }
 
+   //on page open load all your account numbers and any other information the page need to be visualized
   public void fillInitialData(){
     BankRequestFactory.AccountRequest accountRequest = requestFactory.accountRequest();
 
@@ -30,11 +31,31 @@ public class TransferPresenter implements Presenter {
 
   }
 
+  //when you select account number from the drop menu the balance and currency of the account is laoded
   public void fillAccountData(String accountNumber) {
     requestFactory.accountRequest().loadAccountByNumber(accountNumber).to(new Receiver<AccountProxy>() {
       @Override
       public void onSuccess(AccountProxy response) {
         transferView.renderAccountDetails(response);
+      }
+    }).fire();
+  }
+
+  //load outgoing and incoming transactions (few of both types)
+  public void fillTransactionHistory(){
+    BankRequestFactory.AccountRequest accountRequest = requestFactory.accountRequest();
+
+    accountRequest.loadInTransactions().to(new Receiver<List<TransactionProxy>>() {
+      @Override
+      public void onSuccess(List<TransactionProxy> response) {
+        //visualize incoming transaction
+      }
+    });
+
+    accountRequest.loadOutTransactions().to(new Receiver<List<TransactionProxy>>() {
+      @Override
+      public void onSuccess(List<TransactionProxy> response) {
+        //visualize outgoing transaction
       }
     }).fire();
   }

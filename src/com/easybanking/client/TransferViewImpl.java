@@ -52,6 +52,7 @@ public class TransferViewImpl extends Composite implements TransferView {
 
   @Override
   public void renderInitialData(List<String> yourAccountsNumbers) {
+    accountBox.clear();
     accountBox.addItem("");
     for(String accountNumber : yourAccountsNumbers){
       accountBox.addItem(accountNumber);

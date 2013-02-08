@@ -20,7 +20,7 @@ public class SimpleGinModule extends AbstractGinModule{
   protected void configure() {
     bind(TransferView.class).to(TransferViewImpl.class).in(Singleton.class);
     bind(AccountView.class).to(AccountViewImpl.class).in(Singleton.class);
-    bind(CreditView.class).to(CreditViewImpl.class).in(Singleton.class);
+    bind(BillView.class).to(BillViewImpl.class).in(Singleton.class);
     bind(CalculatorView.class).to(CalculatorViewImpl.class).in(Singleton.class);
     bind(UserProvider.class).to(UserProviderImpl.class).in(Singleton.class);
     bind(EventBus.class).to(SimpleEventBus.class).in(Singleton.class);

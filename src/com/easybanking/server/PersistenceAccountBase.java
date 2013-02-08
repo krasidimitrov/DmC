@@ -59,9 +59,33 @@ public class PersistenceAccountBase implements AccountBase {
     return transaction;
   }
 
-  //loadTransaction 0
-  //loadTransaction 1
-  //save contact
-  //load contactAccountsNumbers
+  @Override
+  public List<Transaction> loadInTransactions() {
+    return  datastore.get().find().type(Transaction.class)
+            .addFilter("yourId", Query.FilterOperator.EQUAL, currentUser.get().getId())
+            .addFilter("inOrOut", Query.FilterOperator.EQUAL, 1).returnAll().now();
+  }
 
+  @Override
+  public List<Transaction> loadOutTransactions() {
+    return  datastore.get().find().type(Transaction.class)
+            .addFilter("yourId", Query.FilterOperator.EQUAL, currentUser.get().getId())
+            .addFilter("inOrOut", Query.FilterOperator.EQUAL, 0).returnAll().now();
+  }
+
+  @Override
+  public void saveContact(String name, String accountName) {
+    Contact contact = new Contact();
+    contact.setYourId(currentUser.get().getId());
+    contact.setName(name);
+    contact.setAccountNumber(accountName);
+    datastore.get().store(contact);
+  }
+
+  @Override
+  public List<Contact> loadContacts() {
+    return datastore.get().find().type(Contact.class).addFilter("yourId", Query.FilterOperator.EQUAL, currentUser.get().getId()).returnAll().now();
+  }
+
+   //delete contact
 }

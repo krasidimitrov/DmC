@@ -66,7 +66,7 @@
     <g:HTMLPanel styleName="{style.menuStyle}">
       <g:Label ui:field="accountTabButton" styleName="{style.menuButton}">Account info</g:Label>
       <g:Label ui:field="transferTabButton" styleName="{style.menuButton}">Transfer money</g:Label>
-      <g:Label ui:field="creditTabButton" styleName="{style.menuButton}">Credit payments</g:Label>
+      <g:Label ui:field="creditTabButton" styleName="{style.menuButton}">Bills</g:Label>
       <g:Label ui:field="calculatorTabButton" styleName="{style.menuButton}">Currency calculator</g:Label>
     </g:HTMLPanel>
     <g:HTMLPanel styleName="{style.viewPanelStyle}" ui:field="viewPanel" />

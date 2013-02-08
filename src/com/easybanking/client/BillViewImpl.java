@@ -8,21 +8,21 @@ import com.google.gwt.user.client.ui.HTMLPanel;
 /**
  * @author Krasimir Dimitrov (kpackapgo@gmail.com, krasimir.dimitrov@clouway.com)
  */
-public class CreditViewImpl extends Composite implements CreditView {
-  private CreditPresenter presenter;
+public class BillViewImpl extends Composite implements BillView {
+  private BillPresenter presenter;
 
   @Override
-  public void setPresenter(CreditPresenter presenter) {
+  public void setPresenter(BillPresenter presenter) {
 
     this.presenter = presenter;
   }
 
-  interface CreditViewImplUiBinder extends UiBinder<HTMLPanel, CreditViewImpl> {
+  interface BillViewImplUiBinder extends UiBinder<HTMLPanel, BillViewImpl> {
   }
 
-  private static CreditViewImplUiBinder ourUiBinder = GWT.create(CreditViewImplUiBinder.class);
+  private static BillViewImplUiBinder ourUiBinder = GWT.create(BillViewImplUiBinder.class);
 
-  public CreditViewImpl() {
+  public BillViewImpl() {
     initWidget(ourUiBinder.createAndBindUi(this));
   }
 }

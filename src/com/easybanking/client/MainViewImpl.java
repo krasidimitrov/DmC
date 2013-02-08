@@ -23,7 +23,7 @@ import com.google.web.bindery.requestfactory.shared.Receiver;
  */
 public class MainViewImpl  extends Composite{
   private AccountView accountView;
-  private CreditView creditView;
+  private BillView billView;
   private CalculatorView calculatorView;
   private TransferView transferView;
   private UserProvider userProvider;
@@ -45,7 +45,7 @@ public class MainViewImpl  extends Composite{
             LoginView loginView = new LoginViewImpl();
             Login login = new Login(loginView, requestFactory);
             loginView.setPresenter(login);
-            loginView.setMainView(new MainViewImpl(requestFactory, userProvider, accountView, transferView, creditView, calculatorView));
+            loginView.setMainView(new MainViewImpl(requestFactory, userProvider, accountView, transferView, billView, calculatorView));
 
             RootPanel.get().add((Widget) loginView);
           }
@@ -78,13 +78,13 @@ public class MainViewImpl  extends Composite{
   HTMLPanel viewPanel;
 
   @Inject
-  public MainViewImpl(final BankRequestFactory requestFactory, final UserProvider userProvider, final AccountView accountView, final TransferView transferView, final CreditView creditView, final CalculatorView calculatorView) {
+  public MainViewImpl(final BankRequestFactory requestFactory, final UserProvider userProvider, final AccountView accountView, final TransferView transferView, final BillView billView, final CalculatorView calculatorView) {
     this.userProvider = userProvider;
 
     initWidget(ourUiBinder.createAndBindUi(this));
 
     this.accountView = accountView;
-    this.creditView = creditView;
+    this.billView = billView;
     this.calculatorView = calculatorView;
     this.transferView = transferView;
     this.requestFactory = requestFactory;
@@ -108,7 +108,7 @@ public class MainViewImpl  extends Composite{
 
   @UiHandler("creditTabButton")
   public void onCreditButtonClicked(ClickEvent event){
-    changeEditor((Widget) creditView, new CreditPresenter(requestFactory, creditView));
+    changeEditor((Widget) billView, new BillPresenter(requestFactory, billView));
   }
 
   @UiHandler("calculatorTabButton")
