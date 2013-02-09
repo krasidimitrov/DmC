@@ -17,4 +17,8 @@ public interface TransferView {
   void renderNewlyMadeOutTransaction(TransactionProxy transaction);
 
   void setBalanceLabelAmount(String balanceOnYourAccount);
+
+  void renderOutTransactions(List<TransactionProxy> outTransactions);
+
+  void renderInTransactions(List<TransactionProxy> inTransactions);
 }

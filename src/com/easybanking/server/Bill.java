@@ -1,10 +1,13 @@
 package com.easybanking.server;
 
+import com.google.code.twig.annotation.Id;
+
 /**
  * @author Krasimir Dimitrov (krasimir.dimitrov@clouway.com, kpackapgo@gmail.com)
  */
 public class Bill implements Entity {
 
+  @Id
   Long id;
 
   Long yourId;

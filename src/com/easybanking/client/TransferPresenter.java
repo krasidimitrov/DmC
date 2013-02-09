@@ -1,7 +1,6 @@
 package com.easybanking.client;
 
 import com.google.web.bindery.requestfactory.shared.Receiver;
-import com.google.web.bindery.requestfactory.shared.ServerFailure;
 
 import java.util.List;
 
@@ -30,6 +29,7 @@ public class TransferPresenter implements Presenter {
       }
     }).fire();
 
+    fillTransactionHistory();
   }
 
   //when you select account number from the drop menu the balance and currency of the account is laoded
@@ -54,6 +54,7 @@ public class TransferPresenter implements Presenter {
       @Override
       public void onSuccess(List<TransactionProxy> response) {
         //visualize incoming transaction
+        transferView.renderInTransactions(response);
       }
     });
 
@@ -61,6 +62,7 @@ public class TransferPresenter implements Presenter {
       @Override
       public void onSuccess(List<TransactionProxy> response) {
         //visualize outgoing transaction
+        transferView.renderOutTransactions(response);
       }
     }).fire();
   }

@@ -12,57 +12,96 @@
       /*background-color: rgba(255, 0, 28, 0.99);*/
     }
 
-    .accountStyle{
+    .accountStyle {
       width: 100px
     }
-    .balanceStyle{
-        margin-top: -20px;
-        margin-left: 315px;
+
+    .balanceStyle {
+      margin-top: -20px;
+      margin-left: 315px;
     }
-    .currencyStyle{
+
+    .currencyStyle {
       margin-top: -20px;
       margin-left: 300px;
     }
 
-    .transferStyle{
-      margin-top: 20px;
+    .transferStyle {
+      float: right;
     }
 
-    .transferLabel {
+    .label {
       float: left;
       margin-right: 10px;
+    }
+
+    .clearBoth {
+      clear: both;
+    }
+
+    .transferPanel {
+      margin-top: 10px;
+    }
+
+    .receiverAccountBox {
+      margin-left: 20px;
+      width: 222px;
+      float: left;
+    }
+
+    .amountBox {
+      margin-left: 44px;
+      width: 222px;
+      float: left;
+    }
+
+    .balanceBox {
+      background-color: white;
+      width: 100px;
+      float: left;
+      margin-right: 10px;
+    }
+
+    .transactionsPanel {
+      max-height: 205px;
+      overflow-y: auto;
+    }
+
+    .legendTitles {
+      text-align: center;
     }
   </ui:style>
 
 
 
   <g:HTMLPanel>
-  <!--Transfer from
-  <g:ListBox styleName="{style.accountStyle}" ui:field="accountBox" />
-  with balance
-    <g:Label styleName="{style.balanceStyle}" ui:field="balanceLabel">200</g:Label>
-    <g:Label styleName="{style.currencyStyle}" ui:field="currencyLabel">$</g:Label>
-  <g:TextBox ui:field="amountBox"  maxLength="4" visibleLength="3"/>
-  to account:
-  <g:TextBox ui:field="receiverAccountBox"/>
-  <g:Button styleName="{style.transferStyle}" ui:field="transferButton">Transfer</g:Button>
-  <br />
-  <br />
-  <br />
-  <br />
-  <br />
-   -You can transfer up to 4 digit sums
-   <br />
-   <br />
-   -The currency is automatically converted to the receiver account type-->
 
     <b:Hero>
       <b:Legend>Transfer Money</b:Legend>
       <g:HTMLPanel>
-        <g:Label addStyleNames="{style.transferLabel}">Transfer from</g:Label>
-        <b:ListBox ui:field="accountBox" />
+        <g:Label addStyleNames="{style.label}">Transfer from</g:Label>
+        <b:ListBox ui:field="accountBox" addStyleNames="{style.label}"/>
+        <g:Label addStyleNames="{style.label}">with balance: </g:Label>
+        <b:TextBox styleName="{style.balanceBox}" ui:field="balanceLabel"  height="30"/>
+        <g:Label addStyleNames="{style.label}" ui:field="currencyLabel" />
+        <div class="{style.clearBoth}" />
       </g:HTMLPanel>
+      <g:HTMLPanel addStyleNames="{style.transferPanel}">
+        <g:Label addStyleNames="{style.label}">Transfer to</g:Label>
+        <b:TextBox ui:field="receiverAccountBox" addStyleNames="{style.receiverAccountBox}" height="30"/>
+        <div class="{style.clearBoth}" />
+      </g:HTMLPanel>
+      <g:HTMLPanel>
+        <g:Label addStyleNames="{style.label}">Amount</g:Label>
+        <b:TextBox ui:field="amountBox" addStyleNames="{style.amountBox}" height="30"/>
+      </g:HTMLPanel>
+      <b:Button ui:field="transferButton" text="Transfer" type="INFO" addStyleNames="{style.transferStyle}"/>
 
+      <b:Legend addStyleNames="{style.legendTitles}">Outgoing Transactions</b:Legend>
+      <g:HTMLPanel ui:field="outTransactionsPanel" addStyleNames="{style.clearBoth} {style.transactionsPanel}"/>
+
+      <b:Legend addStyleNames="{style.legendTitles}">Incoming Transactions</b:Legend>
+      <g:HTMLPanel ui:field="inTransactionsPanel" addStyleNames="{style.clearBoth} {style.transactionsPanel}" />
     </b:Hero>
   </g:HTMLPanel>
 </ui:UiBinder>

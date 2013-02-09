@@ -1,10 +1,13 @@
 package com.easybanking.server;
 
+import com.google.code.twig.annotation.Id;
+
 /**
  * @author Krasimir Dimitrov (kpackapgo@gmail.com, krasimir.dimitrov@clouway.com)
  */
 public class Account implements Entity {
 
+  @Id
   private Long id;
 
   private String currency;

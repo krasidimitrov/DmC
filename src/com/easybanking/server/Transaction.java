@@ -1,10 +1,13 @@
 package com.easybanking.server;
 
+import com.google.code.twig.annotation.Id;
+
 /**
  * @author Krasimir Dimitrov (krasimir.dimitrov@clouway.com, kpackapgo@gmail.com)
  */
 public class Transaction implements Entity {
 
+  @Id
   private Long id;
 
   private Long yourId;
@@ -20,6 +23,10 @@ public class Transaction implements Entity {
   private double balanceAfterTransaction;
 
   private String currency;
+
+  public Transaction() {
+
+  }
 
   public Transaction(Long yourId, String yourAccountNumber, String theirAccountNumber, double amount, double balanceAfterTransaction, String currency){
 

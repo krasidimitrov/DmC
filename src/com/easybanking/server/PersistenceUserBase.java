@@ -96,11 +96,22 @@ public class PersistenceUserBase implements UserBase {
       account2.setId(501l);
       Account account3 = new Account(1l, "BG64BUIN95611000127444", 200, "bgn", 4, 12);
       account3.setId(502l);
+      Account account4 = new Account(2l, "BG64BUIN95611000127555", 200, "bgn", 4, 12);
+      account4.setId(503l);
+      Transaction transaction = new Transaction(1l, "BG64BUIN95611000127222", "BG64BUIN95611000127555", 10, 200, "usd");
+      transaction.setInOrOut(0);
+      transaction.setId(1000l);
+      Transaction transaction2 = new Transaction(1l, "BG64BUIN95611000127222", "BG64BUIN95611000127555", 10, 200, "usd");
+      transaction.setId(1001l);
+      transaction2.setInOrOut(1);
       datastore.get().store(account);
       datastore.get().store(account2);
       datastore.get().store(account3);
+      datastore.get().store(account4);
       datastore.get().store(user);
       datastore.get().store(user2);
+      datastore.get().store(transaction);
+      datastore.get().store(transaction2);
     }
   }
 }

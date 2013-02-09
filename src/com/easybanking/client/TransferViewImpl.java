@@ -1,21 +1,17 @@
 package com.easybanking.client;
 
-import com.github.gwtbootstrap.client.ui.DropdownButton;
+import com.github.gwtbootstrap.client.ui.Button;
 import com.github.gwtbootstrap.client.ui.ListBox;
+import com.github.gwtbootstrap.client.ui.TextBox;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ChangeEvent;
 import com.google.gwt.event.dom.client.ClickEvent;
-import com.google.gwt.event.logical.shared.ValueChangeEvent;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.uibinder.client.UiHandler;
-import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.HTMLPanel;
 import com.google.gwt.user.client.ui.Label;
-import com.google.gwt.user.client.ui.TextBox;
-import com.google.gwt.user.client.ui.Widget;
-import com.google.gwt.view.client.SelectionChangeEvent;
 
 import java.util.List;
 
@@ -39,16 +35,22 @@ public class TransferViewImpl extends Composite implements TransferView {
 
   @UiField
   ListBox accountBox;
-  //@UiField
-  //Label balanceLabel;
-  //@UiField
-  //Label currencyLabel;
-  //@UiField
-  //TextBox receiverAccountBox;
-  //@UiField
-  //Button transferButton;
-  //@UiField
-  //TextBox amountBox;
+  @UiField
+  TextBox balanceLabel;
+  @UiField
+  Label currencyLabel;
+  @UiField
+  TextBox receiverAccountBox;
+  @UiField
+  Button transferButton;
+  @UiField
+  TextBox amountBox;
+
+  @UiField
+  HTMLPanel outTransactionsPanel;
+
+  @UiField
+  HTMLPanel inTransactionsPanel;
 
   public TransferViewImpl() {
     initWidget(ourUiBinder.createAndBindUi(this));
@@ -66,29 +68,28 @@ public class TransferViewImpl extends Composite implements TransferView {
 
   @Override
   public void renderAccountDetails(AccountProxy response) {
-    //balanceLabel.setText(response.getBalance()+"");
-    //if(response.getCurrency().equals("bgn"))
-    //  currencyLabel.setText("lv");
-    //if(response.getCurrency().equals("usd"))
-    //  currencyLabel.setText("$");
-    //if(response.getCurrency().equals("eur"))
-    //  currencyLabel.setText("€");
+    balanceLabel.setText(response.getBalance()+"");
+    if(response.getCurrency().equals("bgn"))
+      currencyLabel.setText("лв");
+    if(response.getCurrency().equals("usd"))
+      currencyLabel.setText("$");
+    if(response.getCurrency().equals("eur"))
+      currencyLabel.setText("€");
   }
 
   @Override
   public double getBalanceLabelAmmount() {
-    //return Double.valueOf(balanceLabel.getText());
-    return 0;
+    return Double.valueOf(balanceLabel.getText());
   }
 
   @Override
   public void renderNewlyMadeOutTransaction(TransactionProxy transaction) {
-    //TODO: render the newly made transaction
+    outTransactionsPanel.add(new TransactionWidget(transaction));
   }
 
   @Override
   public void setBalanceLabelAmount(String balanceOnYourAccount) {
-    //balanceLabel.setText(balanceOnYourAccount);
+    balanceLabel.setText(balanceOnYourAccount);
   }
 
   @UiHandler("accountBox")
@@ -96,9 +97,29 @@ public class TransferViewImpl extends Composite implements TransferView {
     presenter.fillAccountData(accountBox.getItemText(accountBox.getSelectedIndex()));
   }
 
-  //@UiHandler("transferButton")
-  //public void onTransfer(ClickEvent event){
+  @UiHandler("transferButton")
+  public void onTransfer(ClickEvent event){
     //////////// check if there is number in the amountBox can be done
-    //presenter.sendMoney(Double.valueOf(amountBox.getText()), accountBox.getItemText(accountBox.getSelectedIndex()), receiverAccountBox.getText());
-  //}
+    presenter.sendMoney(Double.valueOf(amountBox.getText()), accountBox.getItemText(accountBox.getSelectedIndex()), receiverAccountBox.getText());
+  }
+
+  @Override
+  public void renderOutTransactions(List<TransactionProxy> outTransactions) {
+
+    outTransactionsPanel.clear();
+
+    for (TransactionProxy transaction : outTransactions) {
+      outTransactionsPanel.add(new TransactionWidget(transaction));
+    }
+  }
+
+  @Override
+  public void renderInTransactions(List<TransactionProxy> inTransactions) {
+
+    inTransactionsPanel.clear();
+
+    for (TransactionProxy transaction : inTransactions) {
+      inTransactionsPanel.add(new TransactionWidget(transaction));
+    }
+  }
 }

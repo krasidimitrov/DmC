@@ -1,0 +1,52 @@
+<ui:UiBinder xmlns:ui='urn:ui:com.google.gwt.uibinder'
+             xmlns:g='urn:import:com.google.gwt.user.client.ui'>
+  <ui:style>
+    .floatLeft {
+      float: left;
+      margin-right: 5px;
+      font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+      font-size: 14px;
+      line-height: 20px;
+      color: #333333;
+      padding: 10px;
+    }
+
+    .clearBoth {
+      clear: both;
+    }
+
+    .panel {
+      background-color: #FFFFFF;
+      border-top: 1px solid #dddddd;
+    }
+
+    .panel:hover {
+      background-color: #f5f5f5;
+    }
+
+    .transactionId {
+      width: 50px;
+      text-align: center;
+    }
+
+    .accountNumber {
+      width: 200px;
+      text-align: center;
+    }
+
+    .amount {
+      width: 75px;
+      text-align: center;
+    }
+  </ui:style>
+
+  <g:HTMLPanel addStyleNames="{style.panel}">
+    <g:Label ui:field="transactionId" addStyleNames="{style.floatLeft} {style.transactionId}"/>
+    <g:Label ui:field="yourAccountNumber" addStyleNames="{style.floatLeft} {style.accountNumber}"/>
+    <g:Label ui:field="theirAccountNumber" addStyleNames="{style.floatLeft} {style.accountNumber}"/>
+    <g:Label ui:field="amount" addStyleNames="{style.floatLeft} {style.amount}"/>
+    <g:Label ui:field="balanceAfterTransaction" addStyleNames="{style.floatLeft} {style.amount}"/>
+    <g:Label ui:field="currency" addStyleNames="{style.floatLeft} {style.amount}"/>
+    <div class="{style.clearBoth}" />
+  </g:HTMLPanel>
+</ui:UiBinder>
