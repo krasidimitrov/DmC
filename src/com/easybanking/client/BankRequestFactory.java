@@ -31,6 +31,12 @@ public interface BankRequestFactory extends RequestFactory {
 
     Request<List<TransactionProxy>> loadOutTransactions();
 
+    Request<List<BillProxy>> loadBills();
+
+    Request<BillProxy> addBill(String billName, String yourAccountNumber, String contractNumber);
+
+    Request<Void> deleteBill(String contractNumber);
+
   }
 
   AccountRequest accountRequest();

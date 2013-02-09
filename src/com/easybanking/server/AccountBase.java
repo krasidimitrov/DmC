@@ -24,4 +24,10 @@ public interface AccountBase {
   void saveContact(String name, String accountName);
 
   List<Contact> loadContacts();
+
+  List<Bill> loadBills();
+
+  Bill addBill(String billName, String yourAccountNumber, String contractNumber);
+
+  void deleteBill(String contractNumber);
 }

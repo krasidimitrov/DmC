@@ -1,0 +1,9 @@
+<ui:UiBinder xmlns:ui='urn:ui:com.google.gwt.uibinder'
+             xmlns:g='urn:import:com.google.gwt.user.client.ui'>
+  <g:HTMLPanel>
+    <g:Label ui:field="personalId"/>
+    <g:Label ui:field="billName" />
+    <g:Label ui:field="yourAccountNumber"/>
+    <g:Button ui:field="deleteButton">X</g:Button>
+  </g:HTMLPanel>
+</ui:UiBinder>

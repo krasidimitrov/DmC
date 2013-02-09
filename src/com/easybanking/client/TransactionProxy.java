@@ -28,10 +28,6 @@ public interface TransactionProxy extends EntityProxy {
 
   public void setTheirAccountNumber(String theirAccountNumber);
 
-  public double getBalanceBeforeTransaction();
-
-  public void setBalanceBeforeTransaction(double balanceBeforeTransaction);
-
   public double getBalanceAfterTransaction();
 
   public void setBalanceAfterTransaction(double balanceAfterTransaction);
@@ -43,4 +39,9 @@ public interface TransactionProxy extends EntityProxy {
   public String getCurrency();
 
   public void setCurrency(String currency);
+
+  public double getAmount();
+
+  public void setAmount(double amount);
+
 }

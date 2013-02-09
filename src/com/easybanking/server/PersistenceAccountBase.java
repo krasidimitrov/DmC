@@ -30,7 +30,7 @@ public class PersistenceAccountBase implements AccountBase {
     List<Account> accounts = datastore.get().find().type(Account.class)
             .addFilter("userId", Query.FilterOperator.EQUAL, currentUser.get().getId()).returnAll().now();
     List<String> stringAccounts = new ArrayList<String>();
-    for(Account account : accounts){
+    for (Account account : accounts) {
       stringAccounts.add(account.getNumber());
     }
     return stringAccounts;
@@ -50,25 +50,25 @@ public class PersistenceAccountBase implements AccountBase {
   public Transaction sendMoney(double amount, String yourAccountNumber, String theirAccountNumber) {
     Account yourAccount = loadAccountByNumber(yourAccountNumber);
     Account theirAccount = loadAccountByNumber(theirAccountNumber);
-    yourAccount.setBalance(yourAccount.getBalance()-amount);
-    theirAccount.setBalance(theirAccount.getBalance()+amount);
+    yourAccount.setBalance(yourAccount.getBalance() - amount);
+    theirAccount.setBalance(theirAccount.getBalance() + amount);
     datastore.get().update(yourAccount);
     datastore.get().update(theirAccount);
-    Transaction transaction = new Transaction(currentUser.get().getId(), yourAccountNumber, theirAccountNumber, yourAccount.getBalance()-amount, yourAccount.getBalance(), yourAccount.getCurrency());
+    Transaction transaction = new Transaction(currentUser.get().getId(), yourAccountNumber, theirAccountNumber, yourAccount.getBalance() - amount, yourAccount.getBalance(), yourAccount.getCurrency());
     datastore.get().store(transaction);
     return transaction;
   }
 
   @Override
   public List<Transaction> loadInTransactions() {
-    return  datastore.get().find().type(Transaction.class)
+    return datastore.get().find().type(Transaction.class)
             .addFilter("yourId", Query.FilterOperator.EQUAL, currentUser.get().getId())
             .addFilter("inOrOut", Query.FilterOperator.EQUAL, 1).returnAll().now();
   }
 
   @Override
   public List<Transaction> loadOutTransactions() {
-    return  datastore.get().find().type(Transaction.class)
+    return datastore.get().find().type(Transaction.class)
             .addFilter("yourId", Query.FilterOperator.EQUAL, currentUser.get().getId())
             .addFilter("inOrOut", Query.FilterOperator.EQUAL, 0).returnAll().now();
   }
@@ -87,5 +87,25 @@ public class PersistenceAccountBase implements AccountBase {
     return datastore.get().find().type(Contact.class).addFilter("yourId", Query.FilterOperator.EQUAL, currentUser.get().getId()).returnAll().now();
   }
 
-   //delete contact
+  @Override
+  public List<Bill> loadBills() {
+    return datastore.get().find().type(Bill.class).addFilter("yourId", Query.FilterOperator.EQUAL, currentUser.get().getId()).returnAll().now();
+  }
+
+  @Override
+  public Bill addBill(String billName, String yourAccountNumber, String contractNumber) {
+    Bill bill = new Bill(currentUser.get().getId(), billName, yourAccountNumber, contractNumber);
+    datastore.get().store(bill);
+    return bill;
+  }
+
+  @Override
+  public void deleteBill(String contractNumber) {
+    Bill bill = datastore.get().find().type(Bill.class).addFilter("contractNumber", Query.FilterOperator.EQUAL, contractNumber).returnUnique().now();
+    datastore.get().delete(bill);
+  }
+
+
+  //delete contact
+  //delete bill
 }

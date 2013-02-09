@@ -15,18 +15,18 @@ public class Transaction implements Entity {
 
   private String theirAccountNumber;
 
-  private double balanceBeforeTransaction;
+  private double amount;
 
   private double balanceAfterTransaction;
 
   private String currency;
 
-  public Transaction(Long yourId, String yourAccountNumber, String theirAccountNumber, double balanceBeforeTransaction, double balanceAfterTransaction, String currency){
+  public Transaction(Long yourId, String yourAccountNumber, String theirAccountNumber, double amount, double balanceAfterTransaction, String currency){
 
     this.yourId = yourId;
     this.yourAccountNumber = yourAccountNumber;
     this.theirAccountNumber = theirAccountNumber;
-    this.balanceBeforeTransaction = balanceBeforeTransaction;
+    this.amount = amount;
     this.balanceAfterTransaction = balanceAfterTransaction;
     this.currency = currency;
   }
@@ -69,12 +69,12 @@ public class Transaction implements Entity {
     this.theirAccountNumber = theirAccountNumber;
   }
 
-  public double getBalanceBeforeTransaction() {
-    return balanceBeforeTransaction;
+  public double getAmount() {
+    return amount;
   }
 
-  public void setBalanceBeforeTransaction(double balanceBeforeTransaction) {
-    this.balanceBeforeTransaction = balanceBeforeTransaction;
+  public void setAmount(double amount) {
+    this.amount = amount;
   }
 
   public double getBalanceAfterTransaction() {

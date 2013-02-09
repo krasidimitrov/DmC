@@ -2,6 +2,7 @@ package com.easybanking.client;
 
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ChangeEvent;
+import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.logical.shared.ValueChangeEvent;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
@@ -45,6 +46,8 @@ public class TransferViewImpl extends Composite implements TransferView {
   TextBox receiverAccountBox;
   @UiField
   Button transferButton;
+  @UiField
+  TextBox amountBox;
 
   public TransferViewImpl() {
     initWidget(ourUiBinder.createAndBindUi(this));
@@ -70,8 +73,29 @@ public class TransferViewImpl extends Composite implements TransferView {
       currencyLabel.setText("€");
   }
 
+  @Override
+  public double getBalanceLabelAmmount() {
+    return Double.valueOf(balanceLabel.getText());
+  }
+
+  @Override
+  public void renderNewlyMadeOutTransaction(TransactionProxy transaction) {
+    //TODO: render the newly made transaction
+  }
+
+  @Override
+  public void setBalanceLabelAmount(String balanceOnYourAccount) {
+    balanceLabel.setText(balanceOnYourAccount);
+  }
+
   @UiHandler("accountBox")
   public void onAccountBoxChange(ChangeEvent event){
     presenter.fillAccountData(accountBox.getItemText(accountBox.getSelectedIndex()));
+  }
+
+  @UiHandler("transferButton")
+  public void onTransfer(ClickEvent event){
+    //////////// check if there is number in the amountBox can be done
+    presenter.sendMoney(Double.valueOf(amountBox.getText()), accountBox.getItemText(accountBox.getSelectedIndex()), receiverAccountBox.getText());
   }
 }

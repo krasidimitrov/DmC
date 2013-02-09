@@ -1,6 +1,7 @@
 package com.easybanking.client;
 
 import com.google.web.bindery.requestfactory.shared.Receiver;
+import com.google.web.bindery.requestfactory.shared.ServerFailure;
 
 import java.util.List;
 
@@ -18,8 +19,8 @@ public class TransferPresenter implements Presenter {
     fillInitialData();
   }
 
-   //on page open load all your account numbers and any other information the page need to be visualized
-  public void fillInitialData(){
+  //on page open load all your account numbers and any other information the page need to be visualized
+  public void fillInitialData() {
     BankRequestFactory.AccountRequest accountRequest = requestFactory.accountRequest();
 
     accountRequest.loadAccountNumbers().to(new Receiver<List<String>>() {
@@ -41,8 +42,12 @@ public class TransferPresenter implements Presenter {
     }).fire();
   }
 
+
+  //info to show in that order:
+  //yourAccountNumber - theirAccountNumber - amount - balanceAfterTransaction - currency
+
   //load outgoing and incoming transactions (few of both types)
-  public void fillTransactionHistory(){
+  public void fillTransactionHistory() {
     BankRequestFactory.AccountRequest accountRequest = requestFactory.accountRequest();
 
     accountRequest.loadInTransactions().to(new Receiver<List<TransactionProxy>>() {
@@ -58,5 +63,21 @@ public class TransferPresenter implements Presenter {
         //visualize outgoing transaction
       }
     }).fire();
+  }
+
+  public void sendMoney(final double amount, String yourAccountNumber, String theirAccountNumber) {
+    if (transferView.getBalanceLabelAmmount() - amount < 0) {
+      //show message that you dont have enough money to make transaction
+    } else {
+      requestFactory.accountRequest().sendMoney(amount, yourAccountNumber, theirAccountNumber).to(new Receiver<TransactionProxy>() {
+        @Override
+        public void onSuccess(TransactionProxy response) {
+          //add the transaction to show history
+          transferView.setBalanceLabelAmount(String.valueOf(transferView.getBalanceLabelAmmount()-amount));
+          transferView.renderNewlyMadeOutTransaction(response);
+        }
+
+      }).fire();
+    }
   }
 }

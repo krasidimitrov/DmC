@@ -11,4 +11,10 @@ public interface TransferView {
   void renderInitialData(List<String> yourAccountNumbers);
 
   void renderAccountDetails(AccountProxy response);
+
+  double getBalanceLabelAmmount();
+
+  void renderNewlyMadeOutTransaction(TransactionProxy transaction);
+
+  void setBalanceLabelAmount(String balanceOnYourAccount);
 }
