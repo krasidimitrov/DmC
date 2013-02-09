@@ -1,10 +1,98 @@
 <ui:UiBinder xmlns:ui='urn:ui:com.google.gwt.uibinder'
-             xmlns:g='urn:import:com.google.gwt.user.client.ui'>
+             xmlns:g='urn:import:com.google.gwt.user.client.ui'
+             xmlns:b='urn:import:com.github.gwtbootstrap.client.ui'>
+
+  <ui:style>
+
+    .floatLeft {
+      float: left;
+    }
+
+    .clearBoth {
+      clear: both;
+    }
+
+    .addBillButton {
+      margin-left: 310px;
+      margin-top: 20px;
+    }
+
+    .accountLabel {
+      width: 140px;
+      float: left;
+    }
+
+    .subscriptionPanel {
+      margin-top: 10px;
+    }
+
+    .subscriptionId {
+      float: left;
+      height: 30px;
+      width: 220px;
+      margin-left: 13px;
+    }
+
+    .billName {
+      float: left;
+      width: 140px;
+    }
+
+    .providerLabel {
+      float: left;
+      width: 140px;
+    }
+
+    .providersPanel {
+      margin-top: 10px;
+    }
+
+    .billPanel {
+      margin-top: 30px;
+    }
+
+    .legends {
+      text-align: center;
+    }
+  </ui:style>
+
   <g:HTMLPanel>
-    <g:HTMLPanel>
-    PersonalID: <g:TextBox ui:field="personalIdBOx"></g:TextBox>
-    <g:ListBox ui:field="accountBox" />
-    </g:HTMLPanel>
-    <g:HTMLPanel ui:field="billPanel"/>
+
+    <b:Hero>
+
+      <b:Legend addStyleNames="{style.legends}">Add new bill payment</b:Legend>
+      <g:HTMLPanel>
+        <div>
+          <g:Label text="Bill Name:" addStyleNames="{style.billName}"/>
+          <g:ListBox ui:field="billNames" addStyleNames="{style.floatLeft}"/>
+          <div class="{style.clearBoth}" />
+        </div>
+
+        <div class="{style.providersPanel}">
+          <g:Label text="Provider:" addStyleNames="{style.providerLabel}"/>
+          <g:ListBox ui:field="providers" addStyleNames="{style.floatLeft}" />
+          <div class="{style.clearBoth}" />
+        </div>
+
+        <div class="{style.subscriptionPanel}">
+          <g:Label text="Subscription ID:" addStyleNames="{style.floatLeft}"/>
+          <g:TextBox ui:field="subscription" height="30" addStyleNames="{style.subscriptionId}"/>
+          <div class="{style.clearBoth}" />
+        </div>
+
+        <div>
+          <g:Label text="Account" addStyleNames="{style.accountLabel}"/>
+          <g:ListBox ui:field="accountBox" addStyleNames="{style.floatLeft}"/>
+          <div class="{style.clearBoth}" />
+        </div>
+        <div>
+          <b:Button type="PRIMARY" text="Add" ui:field="addBillButton" addStyleNames="{style.addBillButton}"/>
+        </div>
+      </g:HTMLPanel>
+
+      <b:Legend addStyleNames="{style.legends}">Existing bill payments</b:Legend>
+      <g:HTMLPanel ui:field="billPanel" addStyleNames="{style.billPanel}"/>
+    </b:Hero>
+
   </g:HTMLPanel>
 </ui:UiBinder>

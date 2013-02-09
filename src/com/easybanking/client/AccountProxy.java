@@ -5,6 +5,8 @@ import com.easybanking.server.PersistenceLongIdObjectLocator;
 import com.google.web.bindery.requestfactory.shared.EntityProxy;
 import com.google.web.bindery.requestfactory.shared.ProxyFor;
 
+import java.util.List;
+
 /**
  * @author Krasimir Dimitrov (kpackapgo@gmail.com, krasimir.dimitrov@clouway.com)
  */
@@ -37,4 +39,8 @@ public interface AccountProxy extends EntityProxy {
   public int getInterestInterval();
 
   public void setInterestInterval(int interestInterval);
+
+  List<String> getCardNumbers();
+
+  void setCardNumbers(List<String> cardNumbers);
 }

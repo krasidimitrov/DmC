@@ -2,6 +2,9 @@ package com.easybanking.server;
 
 import com.google.code.twig.annotation.Id;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * @author Krasimir Dimitrov (kpackapgo@gmail.com, krasimir.dimitrov@clouway.com)
  */
@@ -21,6 +24,8 @@ public class Account implements Entity {
   private Long userId;
 
   private int interestInterval;
+
+  private List<String> cardNumbers = new ArrayList<String>();
 
   public Long getUserId() {
     return userId;
@@ -94,5 +99,13 @@ public class Account implements Entity {
 
   public void setInterestInterval(int interestInterval) {
     this.interestInterval = interestInterval;
+  }
+
+  public List<String> getCardNumbers() {
+    return cardNumbers;
+  }
+
+  public void setCardNumbers(List<String> cardNumbers) {
+    this.cardNumbers = cardNumbers;
   }
 }

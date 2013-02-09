@@ -1,9 +1,57 @@
 <ui:UiBinder xmlns:ui='urn:ui:com.google.gwt.uibinder'
              xmlns:g='urn:import:com.google.gwt.user.client.ui'>
-  <g:HTMLPanel>
-    <g:Label ui:field="personalId"/>
-    <g:Label ui:field="billName" />
-    <g:Label ui:field="yourAccountNumber"/>
-    <g:Button ui:field="deleteButton">X</g:Button>
+  <ui:style>
+
+    .clearBoth {
+      clear: both;
+    }
+
+    .billContainer {
+      background-color: #FFFFFF;
+      -webkit-border-radius: 8px;
+      -moz-border-radius: 8px;
+      border-radius: 8px;
+      padding: 5px;
+      margin-bottom: 10px;
+    }
+
+    .billNameLabel {
+      float: left;
+      width: 150px;
+      text-align: center;
+    }
+
+    .providerLabel {
+      float: left;
+      text-align: center;
+      width: 150px;
+    }
+
+    .subscriptionLabel {
+      float: left;
+      width: 150px;
+      text-align: center;
+    }
+
+    .accountNumberLabel {
+      float: left;
+      width: 300px;
+      text-align: center;
+    }
+
+    .deleteButton {
+      float: right;
+      margin-right: 10px;
+      margin-top: 2px;
+    }
+  </ui:style>
+
+  <g:HTMLPanel addStyleNames="{style.billContainer}">
+    <g:Label ui:field="billName" addStyleNames="{style.billNameLabel}"/>
+    <g:Label ui:field="provider" addStyleNames="{style.providerLabel}"/>
+    <g:Label ui:field="subscription" addStyleNames="{style.subscriptionLabel}"/>
+    <g:Label ui:field="yourAccountNumber" addStyleNames="{style.accountNumberLabel}"/>
+    <g:Button ui:field="deleteButton" addStyleNames="{style.deleteButton}" text="X" />
+    <div class="{style.clearBoth}" />
   </g:HTMLPanel>
 </ui:UiBinder>

@@ -1,6 +1,7 @@
 package com.easybanking.server;
 
 import com.google.appengine.api.datastore.Query;
+import com.google.appengine.repackaged.com.google.common.collect.Lists;
 import com.google.code.twig.ObjectDatastore;
 import com.google.inject.Inject;
 import com.google.inject.Provider;
@@ -92,6 +93,7 @@ public class PersistenceUserBase implements UserBase {
 
       Account account = new Account(1l, "BG64BUIN95611000127222", 350, "usd", 2.5, 6);
       account.setId(500l);
+      account.setCardNumbers(Lists.newArrayList("67606995000048023", "4138890010964725"));
       Account account2 = new Account(1l, "BG64BUIN95611000127333", 500, "eur", 2, 3);
       account2.setId(501l);
       Account account3 = new Account(1l, "BG64BUIN95611000127444", 200, "bgn", 4, 12);

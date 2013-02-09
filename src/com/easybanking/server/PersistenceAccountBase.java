@@ -1,9 +1,7 @@
 package com.easybanking.server;
 
-import com.google.appengine.api.datastore.Entity;
 import com.google.appengine.api.datastore.Query;
 import com.google.code.twig.ObjectDatastore;
-import com.google.common.collect.Lists;
 import com.google.inject.Inject;
 import com.google.inject.Provider;
 
@@ -93,8 +91,8 @@ public class PersistenceAccountBase implements AccountBase {
   }
 
   @Override
-  public Bill addBill(String billName, String yourAccountNumber, String contractNumber) {
-    Bill bill = new Bill(currentUser.get().getId(), billName, yourAccountNumber, contractNumber);
+  public Bill addBill(String billName, String provider, String contractNumber, String account) {
+    Bill bill = new Bill(currentUser.get().getId(), billName, provider, contractNumber, account);
     datastore.get().store(bill);
     return bill;
   }

@@ -1,5 +1,6 @@
 <ui:UiBinder xmlns:ui='urn:ui:com.google.gwt.uibinder'
-             xmlns:g='urn:import:com.google.gwt.user.client.ui'>
+             xmlns:g='urn:import:com.google.gwt.user.client.ui'
+             xmlns:b='urn:import:com.github.gwtbootstrap.client.ui'>
 
   <ui:style type="com.easybanking.client.AccountViewImpl.Style">
     .accountListStyle {
@@ -14,16 +15,6 @@
       /*-webkit-border-radius: 10px;*/
       /*-moz-border-radius: 10px;*/
       /*border-radius: 10px;*/
-    }
-
-    .accountInfo {
-      margin-top: 10px;
-      margin-right: 10px;;
-      float: right;
-      width: 350px;
-      height: 330px;
-      background-color: #a59edb;
-
     }
 
     .topPanel {
@@ -53,27 +44,116 @@
       font-weight: bold;
     }
 
+    .accountInfoLabelStyle {
+      padding-top: 20px;
+      padding-bottom: 20px;
+    }
+
     .clearBoth {
       clear: both;
     }
 
-    .accountInfoLabelStyle{
-      padding-top: 20px;
-      padding-bottom: 20px;
+    .accountList {
+      float: left;
+    }
+
+    .accountInfo {
+      float: left;
+    }
+
+    .fontSize {
+      font-size: 15px;
+      margin-left: 15px;
+    }
+
+    .floatLeft {
+      float: left;
+    }
+
+    .balanceLabel {
+      width: 160px;
+      text-align: right;
+      margin-right: 10px;
+    }
+
+    .interestRateLabel {
+      width: 160px;
+      text-align: right;
+      margin-right: 10px;
+    }
+
+    .interesetPeriodLabel {
+      width: 160px;
+      text-align: right;
+      margin-right: 10px;
+    }
+
+    .textBox {
+      background-color: #FFFFFF;
+      float: left;
+    }
+
+    .textBox:disabled {
+      background-color: #FFFFFF;
+    }
+
+    .legend {
+      text-align: center;
+    }
+
+    .cardNumbersLegend {
+
+      margin-left: 50px;
+      text-align: center;
+    }
+
+    .cardNumberLabel {
+      margin-left: 100px;
+      font-size: 15;
+      text-align: center;
+      background-color: snow;
+      border: 1px solid #cccccc;
+      -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+      -moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+      box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+      -webkit-transition: border linear .2s, box-shadow linear .2s;
+      margin-bottom: 5px;
+      line-height: 1;
     }
   </ui:style>
 
 
   <g:HTMLPanel>
-    <g:HTMLPanel styleName="{style.topPanel}">
-      <g:HTMLPanel ui:field="accountList" styleName="{style.accountListStyle}">
-      </g:HTMLPanel>
-      <g:HTMLPanel ui:field="accountInfo" styleName="{style.accountInfo}">
-        <g:Label ui:field="balance" styleName="{style.accountInfoLabelStyle}">balance: </g:Label>
-        <g:Label ui:field="interestRate" styleName="{style.accountInfoLabelStyle}">interest rate:</g:Label>
-        <g:Label ui:field="interestInterval" styleName="{style.accountInfoLabelStyle}">Interest Accrual Period: </g:Label>
-      </g:HTMLPanel>
-      <div class="{style.clearBoth}" />
-    </g:HTMLPanel>
+
+    <b:Hero>
+      <b:Legend addStyleNames="{style.legend}">Account Info</b:Legend>
+
+
+        <g:HTMLPanel ui:field="accountList" addStyleNames="{style.accountList}"/>
+
+        <g:HTMLPanel ui:field="accountInfo" addStyleNames="{style.accountInfo}">
+          <g:Label text="Balance:" addStyleNames="{style.fontSize} {style.floatLeft} {style.balanceLabel}"/>
+          <b:TextBox ui:field="balance" styleName="{style.textBox}" height="30" enabled="false"/>
+          <div class="{style.clearBoth}" />
+
+          <g:Label text="Interest rate:" addStyleNames="{style.fontSize} {style.floatLeft} {style.interestRateLabel}"/>
+          <b:TextBox ui:field="interestRate" styleName="{style.textBox}" height="30" enabled="false"/>
+          <div class="{style.clearBoth}" />
+
+          <g:Label text="Interest accrual period:" addStyleNames="{style.fontSize} {style.floatLeft} {style.interesetPeriodLabel}"/>
+          <b:TextBox ui:field="interestInterval" styleName="{style.textBox}" height="30" enabled="false"/>
+          <div class="{style.clearBoth}" />
+
+        </g:HTMLPanel>
+
+
+        <g:HTMLPanel addStyleNames="{style.floatLeft}">
+          <b:Legend addStyleNames="{style.cardNumbersLegend}">cards for this account</b:Legend>
+          <g:HTMLPanel ui:field="cardNumbers" />
+        </g:HTMLPanel>
+
+      <g:HTMLPanel addStyleNames="{style.clearBoth}" />
+
+    </b:Hero>
   </g:HTMLPanel>
 </ui:UiBinder>

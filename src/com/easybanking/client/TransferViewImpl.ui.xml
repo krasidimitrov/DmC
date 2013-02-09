@@ -56,10 +56,13 @@
     }
 
     .balanceBox {
-      background-color: white;
       width: 100px;
       float: left;
       margin-right: 10px;
+    }
+
+    .balanceBox:disabled {
+      background-color: white;
     }
 
     .transactionsPanel {
@@ -77,12 +80,12 @@
   <g:HTMLPanel>
 
     <b:Hero>
-      <b:Legend>Transfer Money</b:Legend>
+      <b:Legend addStyleNames="{style.legendTitles}">Transfer Money</b:Legend>
       <g:HTMLPanel>
         <g:Label addStyleNames="{style.label}">Transfer from</g:Label>
         <b:ListBox ui:field="accountBox" addStyleNames="{style.label}"/>
         <g:Label addStyleNames="{style.label}">with balance: </g:Label>
-        <b:TextBox styleName="{style.balanceBox}" ui:field="balanceLabel"  height="30"/>
+        <b:TextBox styleName="{style.balanceBox}" ui:field="balanceLabel" enabled="false" height="30"/>
         <g:Label addStyleNames="{style.label}" ui:field="currencyLabel" />
         <div class="{style.clearBoth}" />
       </g:HTMLPanel>

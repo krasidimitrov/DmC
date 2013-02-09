@@ -27,7 +27,7 @@ public interface AccountBase {
 
   List<Bill> loadBills();
 
-  Bill addBill(String billName, String yourAccountNumber, String contractNumber);
+  Bill addBill(String billName, String provider, String contractNumber, String account);
 
   void deleteBill(String contractNumber);
 }

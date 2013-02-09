@@ -73,8 +73,8 @@
 
         <b:Navbar addStyleNames="{style.navBar}">
           <b:Nav addStyleNames="{style.navLink}"><b:NavLink ui:field="accountTabButton">Account Info</b:NavLink></b:Nav>
-          <b:Nav ui:field="transferTabButton" addStyleNames="{style.navLink}"><b:NavLink>Transfer Money</b:NavLink></b:Nav>
-          <b:Nav ui:field="creditTabButton" addStyleNames="{style.navLink}"><b:NavLink>Bills</b:NavLink></b:Nav>
+          <b:Nav addStyleNames="{style.navLink}"><b:NavLink ui:field="transferTabButton">Transfer Money</b:NavLink></b:Nav>
+          <b:Nav addStyleNames="{style.navLink}"><b:NavLink ui:field="creditTabButton">Bill Payments</b:NavLink></b:Nav>
           <b:Nav ui:field="calculatorTabButton" addStyleNames="{style.navLink}"><b:NavLink>Currency Calculator</b:NavLink></b:Nav>
           <b:Nav alignment="RIGHT" addStyleNames="{style.navLink}">
             <b:NavLink text="Logout" addStyleNames="{style.logoutNav}" ui:field="logoutButton"/>
@@ -87,13 +87,5 @@
 
     <g:HTMLPanel ui:field="viewPanel" addStyleNames="{style.viewPanelStyle}" />
 
-    <!--<g:Image resource="{res.tt}" styleName="{style.titleStyle}"/>-->
-    <!--<g:HTMLPanel styleName="{style.menuStyle}">-->
-      <!--<g:Label ui:field="accountTabButton" styleName="{style.menuButton}">Account info</g:Label>-->
-      <!--<g:Label ui:field="transferTabButton" styleName="{style.menuButton}">Transfer money</g:Label>-->
-      <!--<g:Label ui:field="creditTabButton" styleName="{style.menuButton}">Bills</g:Label>-->
-      <!--<g:Label ui:field="calculatorTabButton" styleName="{style.menuButton}">Currency calculator</g:Label>-->
-    <!--</g:HTMLPanel>-->
-    <!--<g:HTMLPanel styleName="{style.viewPanelStyle}" ui:field="viewPanel" />-->
   </g:HTMLPanel>
 </ui:UiBinder>

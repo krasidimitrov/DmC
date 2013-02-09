@@ -2,7 +2,6 @@ package com.easybanking.client;
 
 import com.easybanking.inject.MyServiceLocator;
 import com.easybanking.server.AccountBase;
-import com.easybanking.server.Transaction;
 import com.easybanking.server.UserBase;
 import com.google.web.bindery.requestfactory.shared.Request;
 import com.google.web.bindery.requestfactory.shared.RequestContext;
@@ -33,7 +32,7 @@ public interface BankRequestFactory extends RequestFactory {
 
     Request<List<BillProxy>> loadBills();
 
-    Request<BillProxy> addBill(String billName, String yourAccountNumber, String contractNumber);
+    Request<BillProxy> addBill(String billName, String provider, String contractNumber, String account);
 
     Request<Void> deleteBill(String contractNumber);
 

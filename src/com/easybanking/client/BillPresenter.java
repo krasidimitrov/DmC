@@ -36,4 +36,16 @@ public class BillPresenter implements Presenter {
       }
     }).fire();
   }
+
+  public void addBill(String billName, String provider, String subscription, String account) {
+
+    requestFactory.accountRequest().addBill(billName, provider, subscription, account).fire(new Receiver<BillProxy>() {
+
+      @Override
+      public void onSuccess(BillProxy billProxy) {
+        billView.clear();
+        billView.renderBill(billProxy);
+      }
+    });
+  }
 }

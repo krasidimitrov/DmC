@@ -1,5 +1,6 @@
 package com.easybanking.client;
 
+import com.github.gwtbootstrap.client.ui.TextBox;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
@@ -37,11 +38,11 @@ public class AccountViewImpl extends Composite implements AccountView{
 
     String accountNumberStyle();
 
-    String accountInfo();
-
     String topPanel();
 
     String accountInfoLabelStyle();
+
+    String cardNumberLabel();
   }
 
   @UiField
@@ -50,11 +51,13 @@ public class AccountViewImpl extends Composite implements AccountView{
   Style style;
 
   @UiField
-  Label balance;
+  TextBox balance;
   @UiField
-  Label interestRate;
+  TextBox interestRate;
   @UiField
-  Label interestInterval;
+  TextBox interestInterval;
+  @UiField
+  HTMLPanel cardNumbers;
 
   public AccountViewImpl() {
     initWidget(ourUiBinder.createAndBindUi(this));
@@ -79,16 +82,23 @@ public class AccountViewImpl extends Composite implements AccountView{
   @Override
   public void renderAccountInfo(AccountProxy response) {
     if(response.getCurrency().equals("bgn"))
-    balance.setText("balance: "+response.getBalance() +"lv");
+    balance.setText(response.getBalance() +"lv");
     if(response.getCurrency().equals("usd"))
-    balance.setText("balance: "+response.getBalance()+"$");
+    balance.setText(response.getBalance()+"$");
     if(response.getCurrency().equals("eur"))
-    balance.setText("balance: "+response.getBalance()+"€");
+    balance.setText(response.getBalance()+"€");
 
-    interestRate.setText("interest rate: "+response.getInterest()+"%");
+    interestRate.setText(response.getInterest()+"%");
 
-    interestInterval.setText("Interest Accrual Period: "+ response.getInterestInterval()+ " months");
+    interestInterval.setText(response.getInterestInterval()+ " months");
 
+
+    cardNumbers.clear();
+    for (String cardNumber : response.getCardNumbers()) {
+      Label label = new Label(cardNumber);
+      label.addStyleName(style.cardNumberLabel());
+      cardNumbers.add(label);
+    }
   }
 
 }

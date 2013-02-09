@@ -30,4 +30,8 @@ public interface BillProxy extends EntityProxy {
   public String getContractNumber();
 
   public void setContractNumber(String contractNumber);
+
+  String getProvider();
+
+  void setProvider(String provider);
 }

@@ -12,5 +12,7 @@ public interface BillView {
 
   void renderAccountNumbers(List<String> accountNumbers);
 
-  void renderInitialData();
+  void renderBill(BillProxy billProxy);
+
+  void clear();
 }
