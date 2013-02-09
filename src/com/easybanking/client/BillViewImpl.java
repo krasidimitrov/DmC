@@ -11,6 +11,7 @@ import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.HTMLPanel;
 import com.google.gwt.user.client.ui.ListBox;
 import com.google.gwt.user.client.ui.TextBox;
+import com.google.inject.Inject;
 
 import java.util.List;
 
@@ -19,7 +20,6 @@ import java.util.List;
  */
 public class BillViewImpl extends Composite implements BillView {
   private BillPresenter presenter;
-  private BillWidgetFactory factory = new BillWidgetFactory();
 
   @Override
   public void setPresenter(BillPresenter presenter) {
@@ -86,7 +86,11 @@ public class BillViewImpl extends Composite implements BillView {
 
   private static BillViewImplUiBinder ourUiBinder = GWT.create(BillViewImplUiBinder.class);
 
-  public BillViewImpl() {
+  private BillWidgetFactory factory;
+
+  @Inject
+  public BillViewImpl(BillWidgetFactory factory) {
+    this.factory = factory;
     initWidget(ourUiBinder.createAndBindUi(this));
 
     renderBillNames();

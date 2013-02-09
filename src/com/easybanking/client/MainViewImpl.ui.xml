@@ -5,7 +5,7 @@
 
   <ui:with field="res" type="com.easybanking.client.resources.Resources"/>
 
-  <ui:style>
+  <ui:style type="com.easybanking.client.MainViewImpl.MainViewCss">
 
     .navWrapper {
       width: 1024px;
@@ -49,17 +49,23 @@
     }
 
     .viewPanelStyle {
-      /*text-align: center;*/
-      /*background-color: rgba(115, 115, 115, 0.20);*/
+
       width: 1024px;
-      /*height: 550px;*/
-      /*margin-top: 25px;*/
-      /*float: left;*/
-      /*margin-left: 30px;*/
       margin-left: auto;
       margin-right: auto;
     }
 
+    .messagePanel {
+      width: 400px;
+      height: 20px;
+      text-align: center;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .hidden {
+      visibility: hidden;
+    }
   </ui:style>
 
   <g:HTMLPanel ui:field="mainPanel">
@@ -84,6 +90,8 @@
         <div class="{style.clearBoth}"/>
       </div>
     </div>
+
+    <b:AlertBlock ui:field="messagePanel" addStyleNames="{style.messagePanel}" type="SUCCESS" close="false" />
 
     <g:HTMLPanel ui:field="viewPanel" addStyleNames="{style.viewPanelStyle}" />
 

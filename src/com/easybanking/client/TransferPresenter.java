@@ -1,5 +1,6 @@
 package com.easybanking.client;
 
+import com.google.gwt.event.shared.EventBus;
 import com.google.web.bindery.requestfactory.shared.Receiver;
 
 import java.util.List;
@@ -10,11 +11,13 @@ import java.util.List;
 public class TransferPresenter implements Presenter {
   private final BankRequestFactory requestFactory;
   private TransferView transferView;
+  private EventBus eventBus;
 
-  public TransferPresenter(BankRequestFactory requestFactory, TransferView transferView) {
+  public TransferPresenter(BankRequestFactory requestFactory, TransferView transferView, EventBus eventBus) {
     this.requestFactory = requestFactory;
     this.transferView = transferView;
     this.transferView.setPresenter(this);
+    this.eventBus = eventBus;
     fillInitialData();
   }
 
@@ -77,6 +80,7 @@ public class TransferPresenter implements Presenter {
           //add the transaction to show history
           transferView.setBalanceLabelAmount(String.valueOf(transferView.getBalanceLabelAmmount()-amount));
           transferView.renderNewlyMadeOutTransaction(response);
+          eventBus.fireEvent(new ApplicationMessage("Transaction was successful"));
         }
 
       }).fire();

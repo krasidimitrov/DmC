@@ -1,5 +1,6 @@
 package com.easybanking.client;
 
+import com.google.gwt.event.shared.EventBus;
 import com.google.web.bindery.requestfactory.shared.Receiver;
 
 import java.util.List;
@@ -10,11 +11,13 @@ import java.util.List;
 public class BillPresenter implements Presenter {
   private final BankRequestFactory requestFactory;
   private BillView billView;
+  private EventBus eventBus;
 
-  public BillPresenter(BankRequestFactory requestFactory, BillView billView) {
+  public BillPresenter(BankRequestFactory requestFactory, BillView billView, EventBus eventBus) {
     this.requestFactory = requestFactory;
     this.billView = billView;
     this.billView.setPresenter(this);
+    this.eventBus = eventBus;
     loadInitialData();
   }
 
@@ -45,6 +48,7 @@ public class BillPresenter implements Presenter {
       public void onSuccess(BillProxy billProxy) {
         billView.clear();
         billView.renderBill(billProxy);
+        eventBus.fireEvent(new ApplicationMessage("Successfully added bill payment"));
       }
     });
   }
