@@ -98,8 +98,8 @@ public class PersistenceAccountBase implements AccountBase {
   }
 
   @Override
-  public void deleteBill(String contractNumber) {
-    Bill bill = datastore.get().find().type(Bill.class).addFilter("contractNumber", Query.FilterOperator.EQUAL, contractNumber).returnUnique().now();
+  public void deleteBill(Long billId) {
+    Bill bill = datastore.get().load().type(Bill.class).id(billId).now();
     datastore.get().delete(bill);
   }
 

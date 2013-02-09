@@ -29,5 +29,5 @@ public interface AccountBase {
 
   Bill addBill(String billName, String provider, String contractNumber, String account);
 
-  void deleteBill(String contractNumber);
+  void deleteBill(Long billId);
 }

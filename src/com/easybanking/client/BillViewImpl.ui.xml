@@ -54,6 +54,11 @@
     .legends {
       text-align: center;
     }
+
+    .billPaymentLegend {
+      text-align: center;
+      margin-top: 30px;
+    }
   </ui:style>
 
   <g:HTMLPanel>
@@ -90,7 +95,7 @@
         </div>
       </g:HTMLPanel>
 
-      <b:Legend addStyleNames="{style.legends}">Existing bill payments</b:Legend>
+      <b:Legend addStyleNames="{style.billPaymentLegend}">Existing bill payments</b:Legend>
       <g:HTMLPanel ui:field="billPanel" addStyleNames="{style.billPanel}"/>
     </b:Hero>
 

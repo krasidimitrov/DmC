@@ -34,7 +34,7 @@ public interface BankRequestFactory extends RequestFactory {
 
     Request<BillProxy> addBill(String billName, String provider, String contractNumber, String account);
 
-    Request<Void> deleteBill(String contractNumber);
+    Request<Void> deleteBill(Long billId);
 
   }
 
