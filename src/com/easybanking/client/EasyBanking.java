@@ -4,6 +4,7 @@ import com.easybanking.client.gin.SimpleGinInjector;
 import com.easybanking.client.login.LoginView;
 import com.google.gwt.core.client.EntryPoint;
 import com.google.gwt.core.client.GWT;
+import com.google.gwt.dom.client.Document;
 import com.google.gwt.user.client.ui.RootPanel;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.web.bindery.requestfactory.shared.Receiver;
@@ -17,6 +18,8 @@ public class EasyBanking implements EntryPoint{
   private final SimpleGinInjector ginInjector = GWT.create(SimpleGinInjector.class);
 
   public void onModuleLoad() {
+
+    setBackgroundColor();
 
     final MainViewImpl mainView = ginInjector.getMainViewImpl();
 
@@ -40,5 +43,9 @@ public class EasyBanking implements EntryPoint{
         }
       }
     });
+  }
+
+  private void setBackgroundColor() {
+    Document.get().getBody().getStyle().setBackgroundColor("lightslategray");
   }
 }

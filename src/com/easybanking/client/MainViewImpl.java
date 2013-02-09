@@ -3,6 +3,9 @@ package com.easybanking.client;
 import com.easybanking.client.login.Login;
 import com.easybanking.client.login.LoginView;
 import com.easybanking.client.login.LoginViewImpl;
+import com.gargoylesoftware.htmlunit.javascript.host.Event;
+import com.github.gwtbootstrap.client.ui.Nav;
+import com.github.gwtbootstrap.client.ui.NavLink;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
@@ -12,6 +15,7 @@ import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.HTMLPanel;
+import com.google.gwt.user.client.ui.Image;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.RootPanel;
 import com.google.gwt.user.client.ui.Widget;
@@ -28,34 +32,6 @@ public class MainViewImpl  extends Composite{
   private TransferView transferView;
   private UserProvider userProvider;
 
-  public void showLogoutButton() {
-
-    Button logout = new Button("logout");
-    logout.addClickHandler(new ClickHandler() {
-
-      @Override
-      public void onClick(ClickEvent event) {
-
-        requestFactory.getLoginRequest().logout().fire(new Receiver<Void>() {
-          @Override
-          public void onSuccess(Void response) {
-
-            RootPanel.get().clear();
-
-            LoginView loginView = new LoginViewImpl();
-            Login login = new Login(loginView, requestFactory);
-            loginView.setPresenter(login);
-            loginView.setMainView(new MainViewImpl(requestFactory, userProvider, accountView, transferView, billView, calculatorView));
-
-            RootPanel.get().add((Widget) loginView);
-          }
-        });
-      }
-    });
-
-    RootPanel.get().add(logout);
-  }
-
   interface MainViewImplUiBinder extends UiBinder<HTMLPanel, MainViewImpl> {
   }
 
@@ -65,15 +41,19 @@ public class MainViewImpl  extends Composite{
   private BankRequestFactory requestFactory;
 
   @UiField
-  Label accountTabButton;
-  @UiField
-  Label transferTabButton;
-  @UiField
-  Label creditTabButton;
-  @UiField
-  Label calculatorTabButton;
+  NavLink accountTabButton;
+  //@UiField
+  //Label transferTabButton;
+  //@UiField
+  //Label creditTabButton;
+  //@UiField
+  //Label calculatorTabButton;
   @UiField
   HTMLPanel mainPanel;
+
+  @UiField
+  NavLink logoutButton;
+
   @UiField
   HTMLPanel viewPanel;
 
@@ -92,37 +72,56 @@ public class MainViewImpl  extends Composite{
     activeEditor = (Widget) transferView;
     viewPanel.add(activeEditor);
 
-    insertTestData();
+    accountTabButton.addHandler(new ClickHandler() {
+      @Override
+      public void onClick(ClickEvent event) {
+        changeEditor((Widget) accountView, new AccountPresenter(requestFactory, accountView, userProvider));
+      }
+    }, ClickEvent.getType());
+  }
+
+  @UiHandler("logoutButton")
+  public void onLogoutButtonClick(ClickEvent event) {
+
+    RootPanel.get().clear();
+
+    LoginView loginView = new LoginViewImpl();
+    Login login = new Login(loginView, requestFactory);
+    loginView.setPresenter(login);
+    loginView.setMainView(new MainViewImpl(requestFactory, userProvider, accountView, transferView, billView, calculatorView));
+
+    RootPanel.get().add((Widget) loginView);
   }
 
   @UiHandler("accountTabButton")
-  public void onAccountButtonClicked(ClickEvent event){
-
+  public void onAccountTabButtonClick(ClickEvent event) {
     changeEditor((Widget) accountView, new AccountPresenter(requestFactory, accountView, userProvider));
   }
 
-  @UiHandler("transferTabButton")
-  public void onTransferButtonClicked(ClickEvent event){
-    changeEditor((Widget) transferView, new TransferPresenter(requestFactory, transferView));
-  }
+  //@UiHandler("accountTabButton")
+  //public void onAccountButtonClicked(ClickEvent event){
+  //
+  //  changeEditor((Widget) accountView, new AccountPresenter(requestFactory, accountView, userProvider));
+  //}
 
-  @UiHandler("creditTabButton")
-  public void onCreditButtonClicked(ClickEvent event){
-    changeEditor((Widget) billView, new BillPresenter(requestFactory, billView));
-  }
+  //@UiHandler("transferTabButton")
+  //public void onTransferButtonClicked(ClickEvent event){
+  //  changeEditor((Widget) transferView, new TransferPresenter(requestFactory, transferView));
+  //}
 
-  @UiHandler("calculatorTabButton")
-  public void onCalculatorButtonClicked(ClickEvent event){
-    changeEditor((Widget) calculatorView, new CalculatorPresenter(requestFactory, calculatorView));
-  }
+  //@UiHandler("creditTabButton")
+  //public void onCreditButtonClicked(ClickEvent event){
+  //  changeEditor((Widget) billView, new BillPresenter(requestFactory, billView));
+  //}
+
+  //@UiHandler("calculatorTabButton")
+  //public void onCalculatorButtonClicked(ClickEvent event){
+  //  changeEditor((Widget) calculatorView, new CalculatorPresenter(requestFactory, calculatorView));
+  //}
 
   private void changeEditor(Widget newActiveEditor, Presenter presenter) {
     viewPanel.remove(activeEditor);
     activeEditor = newActiveEditor;
     viewPanel.add(activeEditor);
-  }
-
-  public void insertTestData(){
-
   }
 }

@@ -1,6 +1,7 @@
 package com.easybanking.client.login;
 
 import com.easybanking.client.MainViewImpl;
+import com.github.gwtbootstrap.client.ui.AlertBlock;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.uibinder.client.UiBinder;
@@ -22,19 +23,16 @@ public class LoginViewImpl extends Composite implements LoginView {
   private static LoginViewImplUiBinder uiBinder = GWT.create(LoginViewImplUiBinder.class);
 
   @UiField
-  TextBox username;
+  com.github.gwtbootstrap.client.ui.TextBox username;
 
   @UiField
-  PasswordTextBox password;
+  com.github.gwtbootstrap.client.ui.PasswordTextBox password;
 
   @UiField
-  Button loginButton;
+  com.github.gwtbootstrap.client.ui.Button loginButton;
 
   @UiField
-  HTMLPanel errorPanel;
-
-  @UiField
-  Label errorMessage;
+  AlertBlock error;
 
   private Presenter presenter;
 
@@ -59,13 +57,14 @@ public class LoginViewImpl extends Composite implements LoginView {
   @Override
   public void showErrorMessage(String message) {
 
-    errorPanel.setVisible(true);
-    errorMessage.setText(message);
+    error.setVisible(true);
+    error.setText(message);
   }
 
   @Override
   public void clearErrorMessage() {
-    errorPanel.setVisible(false);
+    error.setVisible(false);
+    error.setText("");
   }
 
   @Override
@@ -76,7 +75,6 @@ public class LoginViewImpl extends Composite implements LoginView {
   @Override
   public void showMainView() {
     RootPanel.get().clear();
-    mainView.showLogoutButton();
     RootPanel.get().add(mainView);
   }
 }
