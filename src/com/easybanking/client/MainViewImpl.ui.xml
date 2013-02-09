@@ -75,7 +75,7 @@
           <b:Nav addStyleNames="{style.navLink}"><b:NavLink ui:field="accountTabButton">Account Info</b:NavLink></b:Nav>
           <b:Nav addStyleNames="{style.navLink}"><b:NavLink ui:field="transferTabButton">Transfer Money</b:NavLink></b:Nav>
           <b:Nav addStyleNames="{style.navLink}"><b:NavLink ui:field="creditTabButton">Bill Payments</b:NavLink></b:Nav>
-          <b:Nav ui:field="calculatorTabButton" addStyleNames="{style.navLink}"><b:NavLink>Currency Calculator</b:NavLink></b:Nav>
+          <b:Nav addStyleNames="{style.navLink}"><b:NavLink ui:field="calculatorTabButton">Currency Calculator</b:NavLink></b:Nav>
           <b:Nav alignment="RIGHT" addStyleNames="{style.navLink}">
             <b:NavLink text="Logout" addStyleNames="{style.logoutNav}" ui:field="logoutButton"/>
             <b:Icon type="SIGNOUT" addStyleNames="{style.logoutIcon}" iconSize="LARGE"/>

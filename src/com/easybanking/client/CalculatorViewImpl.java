@@ -1,13 +1,17 @@
 package com.easybanking.client;
 
 import com.easybanking.client.resources.Resources;
+import com.github.gwtbootstrap.client.ui.Button;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.uibinder.client.UiHandler;
-import com.google.gwt.user.cellview.client.CellTable;
 import com.google.gwt.user.client.ui.*;
+import com.google.gwt.user.client.ui.Image;
+import com.google.gwt.user.client.ui.Label;
+import com.google.gwt.user.client.ui.ListBox;
+import com.google.gwt.user.client.ui.TextBox;
 
 /**
  * @author Krasimir Dimitrov (kpackapgo@gmail.com, krasimir.dimitrov@clouway.com)
@@ -49,13 +53,13 @@ public class CalculatorViewImpl extends Composite implements CalculatorView {
     currencyCellTable.setWidget(1,0,new Image(Resources.INSTANCE.bgn()));
     currencyCellTable.setWidget(2,0,new Image(Resources.INSTANCE.usd()));
     currencyCellTable.setWidget(3,0,new Image(Resources.INSTANCE.eur()));
-    currencyCellTable.setWidget(1,1,new Image(Resources.INSTANCE.grey()));
+    currencyCellTable.setWidget(1,1,new Label("-"));
     currencyCellTable.setWidget(1,2,new Label("0.641"));
     currencyCellTable.setWidget(1,3,new Label("0.502"));
-    currencyCellTable.setWidget(2,2,new Image(Resources.INSTANCE.grey()));
+    currencyCellTable.setWidget(2,2,new Label("-"));
     currencyCellTable.setWidget(2,1,new Label("1.56"));
     currencyCellTable.setWidget(2,3,new Label("0.79"));
-    currencyCellTable.setWidget(3,3,new Image(Resources.INSTANCE.grey()));
+    currencyCellTable.setWidget(3,3,new Label("-"));
     currencyCellTable.setWidget(3,1,new Label("1.96"));
     currencyCellTable.setWidget(3,2,new Label("1.25"));
 

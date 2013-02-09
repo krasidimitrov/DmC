@@ -1,26 +1,59 @@
 <ui:UiBinder xmlns:ui='urn:ui:com.google.gwt.uibinder'
              xmlns:g='urn:import:com.google.gwt.user.client.ui'
-             xmlns:c='urn:import:com.google.gwt.user.cellview.client'>
+             xmlns:b='urn:import:com.github.gwtbootstrap.client.ui'>
   <ui:style>
-    .editPanelStyle {
-      width: 400px;
-      /*margin-top: -200px;;*/
-      margin-left: auto;
-      margin-right: auto;
-      /*background-color: rgb(255, 0, 28);*/
-    }
 
-    .tableStyle{
+    .currencyTable {
+      width: 300px;
+      height: 220px;
       margin-left: auto;
       margin-right: auto;
       text-align: center;
     }
 
+    .legend {
+      text-align: center;
+    }
+
+    .floatLeft {
+      float: left;
+      margin-right: 5px;
+    }
+
+    .clearBoth {
+      clear: both;
+    }
+
+    .convertorPanel {
+      width: 520px;
+      margin-left: auto;
+      margin-right: auto;
+      margin-top: 30px;
+    }
   </ui:style>
 
-  <g:HTMLPanel styleName="{style.editPanelStyle}">
-    <g:FlexTable ui:field="currencyCellTable" styleName="{style.tableStyle}"/>
-    Convert<g:TextBox ui:field="input" /><g:ListBox ui:field="currencyList"/> to <g:TextBox ui:field="output"/><g:ListBox ui:field="currencyList2"/>
-    <g:Button ui:field="convertButton">Convert</g:Button>
+  <g:HTMLPanel>
+
+    <b:Hero>
+      <g:HTMLPanel>
+        <b:Legend addStyleNames="{style.legend}">Currency Calculator</b:Legend>
+        <g:FlexTable ui:field="currencyCellTable" addStyleNames="{style.currencyTable}"/>
+
+        <div class="{style.convertorPanel}">
+          <div>
+            <g:TextBox ui:field="input" addStyleNames="{style.floatLeft}" height="30"/>
+            <g:ListBox ui:field="currencyList" addStyleNames="{style.floatLeft}"/>
+            <b:Button type="PRIMARY" ui:field="convertButton" addStyleNames="{style.floatLeft}" text="Convert" />
+            <div class="{style.clearBoth}" />
+          </div>
+          <div>
+            <g:TextBox ui:field="output" addStyleNames="{style.floatLeft}" height="30"/>
+            <g:ListBox ui:field="currencyList2" addStyleNames="{style.floatLeft}" />
+            <div class="{style.clearBoth}" />
+          </div>
+        </div>
+      </g:HTMLPanel>
+    </b:Hero>
+
   </g:HTMLPanel>
 </ui:UiBinder>

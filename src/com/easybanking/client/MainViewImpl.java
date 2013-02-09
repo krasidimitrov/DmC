@@ -6,7 +6,6 @@ import com.easybanking.client.login.LoginViewImpl;
 import com.github.gwtbootstrap.client.ui.NavLink;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
-import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.uibinder.client.UiHandler;
@@ -40,8 +39,8 @@ public class MainViewImpl  extends Composite{
   NavLink transferTabButton;
   @UiField
   NavLink creditTabButton;
-  //@UiField
-  //Label calculatorTabButton;
+  @UiField
+  NavLink calculatorTabButton;
   @UiField
   HTMLPanel mainPanel;
 
@@ -65,13 +64,6 @@ public class MainViewImpl  extends Composite{
     new TransferPresenter(requestFactory , this.transferView);
     activeEditor = (Widget) transferView;
     viewPanel.add(activeEditor);
-
-    accountTabButton.addHandler(new ClickHandler() {
-      @Override
-      public void onClick(ClickEvent event) {
-        changeEditor((Widget) accountView, new AccountPresenter(requestFactory, accountView, userProvider));
-      }
-    }, ClickEvent.getType());
   }
 
   @UiHandler("logoutButton")
@@ -92,12 +84,6 @@ public class MainViewImpl  extends Composite{
     changeEditor((Widget) accountView, new AccountPresenter(requestFactory, accountView, userProvider));
   }
 
-  //@UiHandler("accountTabButton")
-  //public void onAccountButtonClicked(ClickEvent event){
-  //
-  //  changeEditor((Widget) accountView, new AccountPresenter(requestFactory, accountView, userProvider));
-  //}
-
   @UiHandler("transferTabButton")
   public void onTransferButtonClicked(ClickEvent event){
     changeEditor((Widget) transferView, new TransferPresenter(requestFactory, transferView));
@@ -108,10 +94,10 @@ public class MainViewImpl  extends Composite{
     changeEditor((Widget) billView, new BillPresenter(requestFactory, billView));
   }
 
-  //@UiHandler("calculatorTabButton")
-  //public void onCalculatorButtonClicked(ClickEvent event){
-  //  changeEditor((Widget) calculatorView, new CalculatorPresenter(requestFactory, calculatorView));
-  //}
+  @UiHandler("calculatorTabButton")
+  public void onCalculatorButtonClicked(ClickEvent event){
+    changeEditor((Widget) calculatorView, new CalculatorPresenter(requestFactory, calculatorView));
+  }
 
   private void changeEditor(Widget newActiveEditor, Presenter presenter) {
     viewPanel.remove(activeEditor);
